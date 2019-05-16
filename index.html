@@ -343,6 +343,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/16/MPLS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/16/MPLS/" class="post-title-link" itemprop="url">MPLS(Muti Protocol Label Switching,多协议标签交换)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-16 20:08:07 / Modified: 23:05:42" itemprop="dateCreated datePublished" datetime="2019-05-16T20:08:07+08:00">2019-05-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">1.2k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>MPLS通常被认为位于<code>OSI</code>第2层（数据链路层）和第3层（网络层）的传统层之间运行，因此MPLS被称为2.5层协议。</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><hr>
+<p><a href="https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching" target="_blank" rel="noopener">wikipedia：Multiprotocol Label Switching</a></p>
+<h1 id="MPLS基础简介"><a href="#MPLS基础简介" class="headerlink" title="MPLS基础简介"></a>MPLS基础简介</h1><hr>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><hr>
+<p> <strong>MPLS</strong>是一种在电信网络上利用<strong>标签</strong>引导<strong>数据</strong>高速、高效传输的技术。<br> MPLS 利用 IGP、BGP 等路由协议的路由信息建立虚连接–基于标签的转发路径，在面向无连接的IP网络中增加了面向连接的属性。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><hr>
+<h3 id="Label-标签"><a href="#Label-标签" class="headerlink" title="Label - 标签"></a>Label - 标签</h3><hr>
+<p> MPLS 通过在数据包前加上包含<strong>一个</strong>或<strong>多个</strong>标签的 MPLS 标头。这称为<strong>标签堆栈</strong>。<br> <strong>标签堆栈</strong>中的每个条目包含四个字段：</p>
+<ul>
+<li>Label：标签值字段，长度为 20bits，用来标识一个 FEC。</li>
+<li>Exp：3bits，保留，协议中没有明确规定，通常用作 CoS。</li>
+<li>S：1bit，MPLS 支持多重标签。值为 1 时表示为最底层标签。</li>
+<li>TTL：8bits，和 IP 分组中的 TTL 意义相同，可以用来防止环路。<br>MPLS Label 字段结构(<em>暂未添加字段图</em>)</li>
+</ul>
+<h3 id="FEC-转发等价类"><a href="#FEC-转发等价类" class="headerlink" title="FEC(转发等价类)"></a>FEC(转发等价类)</h3><hr>
+<p>MPLS实际上是一种分类转发技术，它将具有相同转发处理方式（目的地相同、使用转发路径相同或具有相同服务等级等）的分组归为一类，称为<strong>转发等价类</strong>。属于相同转发等价类的分组在同一个MPLS网络中将获得完全相同的处理。<br>FEC划分方式也非常灵活，划分依据可以是：源地址、目的地址、源端口、目的端口、协议类型和VPN等的任意组合。一般情况下，根据分组的网络层目的地址划分FEC。</p>
+<h3 id="LSR-Label-Switch-Router-标签交换路由器"><a href="#LSR-Label-Switch-Router-标签交换路由器" class="headerlink" title="LSR(Label Switch Router,标签交换路由器)"></a>LSR(Label Switch Router,标签交换路由器)</h3><hr>
+<p>具有MPLS标签转发能力的设备称之为<strong>标签交换路由器（LSR）</strong>。LSR 是 MPLS 网络中的基本元素。</p>
+<ul>
+<li>当 LSR 接收到数据包时，它使用数据包中包含的<strong>标签（Label）</strong>作为索引来确认<strong>标签交换路径（LSP）</strong>上的下一跳以及···。然后从标头中删除旧标签，并在数据包在进行转发前替换为新标签。</li>
+</ul>
+<h3 id="LER-Label-Edge-Router-标签边缘路由器"><a href="#LER-Label-Edge-Router-标签边缘路由器" class="headerlink" title="LER(Label Edge Router,标签边缘路由器)"></a>LER(Label Edge Router,标签边缘路由器)</h3><hr>
+<p>位于 MPLS 网络边缘、连接其他网络的 LSR 称为 <strong>标签边缘路由器（LER）</strong>。</p>
+<h3 id="LSP-Label-switched-Paths-标签交换路径"><a href="#LSP-Label-switched-Paths-标签交换路径" class="headerlink" title="LSP(Label-switched Paths,标签交换路径)"></a>LSP(Label-switched Paths,标签交换路径)</h3><hr>
+<p>一个<strong>转发等价类（FEC）</strong>在 MPLS 网络中经过的 LSR 构成的转发路径；即从入口 LSR 到 出口 LSR 的一条单向路径，称为 <strong>标签交换路径（LSP）</strong>。</p>
+<blockquote>
+<p>LSP 与 ATM 或 帧中继网络中的 <strong>永久虚拟电路（PVC）</strong> 没有区别，只是它们不依赖特定的第2层技术。</p>
+</blockquote>
+<h3 id="LDP-标签分发协议"><a href="#LDP-标签分发协议" class="headerlink" title="LDP(标签分发协议)"></a>LDP(标签分发协议)</h3><hr>
+<p>使用<strong>标签分发协议（LDP）</strong> 在 LER 和 LSR 之间分发<strong>标签（Label）</strong>。MPLS 网络中的 LSR 使用<em>标准化程序</em>定期相互交换 标签 和 可达信息，构建网络的完整拓扑，以便 LSR 可以转发数据包。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/15/next主题优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -990,7 +1194,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1036,7 +1240,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1127,7 +1333,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">4k</span>
+    <span title="Symbols count total">5k</span>
   
 
   
@@ -1136,7 +1342,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">3 mins.</span>
+    <span title="Reading time total">5 mins.</span>
   
 </div>
 
