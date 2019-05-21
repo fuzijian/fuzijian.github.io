@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker/">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker CLI skills/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZiJian Fu">
@@ -363,7 +363,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/21/Docker/" class="post-title-link" itemprop="url">Docker</a>
+                <a href="/2019/05/21/Docker CLI skills/" class="post-title-link" itemprop="url">Docker CLI 操作技巧</a>
               
             
           </h1>
@@ -388,257 +388,7 @@
                 
               
 
-              <time title="Created: 2019-05-21 20:08:07 / Modified: 16:19:33" itemprop="dateCreated datePublished" datetime="2019-05-21T20:08:07+08:00">2019-05-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Virtualization/" itemprop="url" rel="index"><span itemprop="name">Virtualization</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Virtualization/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">2k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">2 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Docker-概述"><a href="#Docker-概述" class="headerlink" title="Docker 概述"></a>Docker 概述</h1><blockquote>
-<p>Docker 是一个轻量化的虚拟化引擎。</p>
-</blockquote>
-<h2 id="Docker-Engine"><a href="#Docker-Engine" class="headerlink" title="Docker Engine"></a>Docker Engine</h2><p>Docker Engine 是一个 Client - Server 应用程序，包含以下主要组件：</p>
-<ul>
-<li>Server：即 docker deamon，核心进程（dockerd）。</li>
-<li>REST API：与Docker守护进行进行通讯的接口。</li>
-<li>Client：即 docker CLI ，一个命令行界面（CLI）客户端（docker 命令）。</li>
-</ul>
-<p><img src="https://docs.docker.com/engine/images/engine-components-flow.png" alt="engine-components-flow"></p>
-<blockquote>
-<p>CLI 使用 Docker REST API 通过脚本或者直接CLI命令与Docker deamon进行交互。</p>
-</blockquote>
-<hr>
-<h2 id="Docker-architecture"><a href="#Docker-architecture" class="headerlink" title="Docker architecture"></a>Docker architecture</h2><p>Docker 采用 <code>Client - Server</code> 架构。</p>
-<p>Client 和 Deamon 可以在同一个系统上运行，也可以将 Client 连接到远端的 Docker deamon。</p>
-<p><img src="https://docs.docker.com/engine/images/architecture.svg" alt="architecture"></p>
-<h3 id="Docker-deamon"><a href="#Docker-deamon" class="headerlink" title="Docker deamon"></a>Docker deamon</h3><p>Docker deamon（dockerd）侦听来自Docker API的请求，并管理 <code>image</code>、<code>Container</code>、<code>Network</code> 和 <code>Volume</code> 等对象。</p>
-<blockquote>
-<p>守护进程还可以与其他守护进程通信，以管理docker服务。</p>
-</blockquote>
-<h3 id="Docker-Client"><a href="#Docker-Client" class="headerlink" title="Docker Client"></a>Docker Client</h3><p>Docker Client（docker）是与 Docker deamon最常用的主要交互方式。</p>
-<blockquote>
-<p>例如：使用 docker run 命令，客户端会将这些命令发送给<code>dockerd</code>，然后由<code>dockerd</code>执行命令。</p>
-</blockquote>
-<h3 id="Docker-registries"><a href="#Docker-registries" class="headerlink" title="Docker registries"></a>Docker registries</h3><p>Docker registries 是一个存储 Docker image 的仓库。</p>
-<blockquote>
-<p>例如：使用 <code>docker pull</code> 或 <code>docker run</code> 命令时，将从配置的 registries 中 提取所需的 image。</p>
-<p>注：默认 registries 为 Docker Hub。</p>
-</blockquote>
-<h3 id="Docker-objects"><a href="#Docker-objects" class="headerlink" title="Docker objects"></a>Docker objects</h3><h4 id="image"><a href="#image" class="headerlink" title="image"></a>image</h4><h4 id="container"><a href="#container" class="headerlink" title="container"></a>container</h4><h4 id="network"><a href="#network" class="headerlink" title="network"></a>network</h4><h4 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h4><h1 id="Docker-底层采用的基础技术"><a href="#Docker-底层采用的基础技术" class="headerlink" title="Docker 底层采用的基础技术"></a>Docker 底层采用的基础技术</h1><p>Docker 采用 <code>Go</code>语言编写，它利用Linux内核的几个功能来为其提供功能。</p>
-<p>容器的底层实现技术：cgroup 和 namespace 是最重要的两种技术。<strong>cgroup</strong> 实现资源限额，<strong>namespace</strong> 实现资源隔离。</p>
-<h2 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h2><p>Docker 采用 Namespaces 技术提供的隔离空间被称为容器。</p>
-<p>Namespaces 管理着 Linux OS 中全局唯一的资源，并且可以让每一个容器认为只有自己在使用这些资源。即 Namespace 实现了容器间的资源隔离。</p>
-<p>运行容器时，Docker 会为该容器创建一组 Namespaces。 Namespaces 提供了隔离效果，容器的都在一个独立的 Namespaces 中运行，其访问权限仅限于该 Namespaces。</p>
-<p>Docker Engine 使用了如下6种 Namespace：</p>
-<ul>
-<li>Mount namespace：使容器看上去拥有整个文件系统，即容器拥有自己的 /  并且可以执行mount 和 umount。</li>
-<li>UTS namespace：使容器拥有自己的hostname，默认下容器hostname是它的短ID。也可以通过-h 或 –hostname 参数设置。</li>
-<li>IPC namespace：使容器拥有自己的共享内存和信号量（semaphore）来实现进程间的通信，而不会与host和其他容器的IPC混一起。</li>
-<li>PID namespace：实现容器独立的一套PID，即 PID = 1 的进程不是 host 的 init 进程。</li>
-<li>Network namespace：使容器拥有自己独立的 网卡、IP、路由等网络资源。</li>
-<li>User namespace：使容器能够管理自己的用户，host 无法查看到容器中创建的用户。</li>
-</ul>
-<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p><strong>cgroup</strong> 全称 Control Group 。Linux OS通过 cgroup 设置进程使用CPU、内存 和 IO资源 的限额。</p>
-<p>docker 资源限制中的 –cpu-shares 、-m  等参数，实际上是在配置 cgroup （/sys/fs/cgroup/）</p>
-<p>Docker cgroup配置目录：</p>
-<ul>
-<li><code>/sys/fs/cgroup/cpu/docker</code>：Docker 容器CPU配置</li>
-<li><code>/sys/fs/cgroup/memory/docker</code>：Docker 容器内存</li>
-<li><code>/sys/fs/cgroup/blkio/docker</code>：Docker 容器Block IO</li>
-</ul>
-<blockquote>
-<p>例：在 /sys/fs/cgroup/cpu/docker 目录中，Linux OS会为每个容器创建一个cgroup目录，以容器长ID命名。</p>
-</blockquote>
-<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker CLI 操作技巧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZiJian Fu">
-      <meta itemprop="description" content="Keep it simple.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZiJian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/21/Docker CLI 操作技巧/" class="post-title-link" itemprop="url">Docker CLI 操作技巧</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-21 20:08:07 / Modified: 14:47:07" itemprop="dateCreated datePublished" datetime="2019-05-21T20:08:07+08:00">2019-05-21</time>
+              <time title="Created: 2019-05-21 20:08:07 / Modified: 16:32:31" itemprop="dateCreated datePublished" datetime="2019-05-21T20:08:07+08:00">2019-05-21</time>
             
 
             
@@ -747,6 +497,263 @@
 <blockquote>
 <p>对正在运行中名为centos的容器，分配一个伪终端运行bash；</p>
 </blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/21/Docker overview/" class="post-title-link" itemprop="url">Docker 概述</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-21 20:00:00 / Modified: 16:32:59" itemprop="dateCreated datePublished" datetime="2019-05-21T20:00:00+08:00">2019-05-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Virtualization/" itemprop="url" rel="index"><span itemprop="name">Virtualization</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Virtualization/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">2.1k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">2 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker-概述"><a href="#Docker-概述" class="headerlink" title="Docker 概述"></a>Docker 概述</h1><blockquote>
+<p>Docker 是一个轻量化的虚拟化引擎。</p>
+</blockquote>
+<h2 id="Docker-Engine"><a href="#Docker-Engine" class="headerlink" title="Docker Engine"></a>Docker Engine</h2><p>Docker Engine 是一个 Client - Server 应用程序，包含以下主要组件：</p>
+<ul>
+<li>Server：即 docker deamon，核心进程（dockerd）。</li>
+<li>REST API：与Docker守护进行进行通讯的接口。</li>
+<li>Client：即 docker CLI ，一个命令行界面（CLI）客户端（docker 命令）。</li>
+</ul>
+<p><img src="https://docs.docker.com/engine/images/engine-components-flow.png" alt="engine-components-flow"></p>
+<blockquote>
+<p>CLI 使用 Docker REST API 通过脚本或者直接CLI命令与Docker deamon进行交互。</p>
+</blockquote>
+<hr>
+<h2 id="Docker-architecture"><a href="#Docker-architecture" class="headerlink" title="Docker architecture"></a>Docker architecture</h2><p>Docker 采用 <code>Client - Server</code> 架构。</p>
+<p>Client 和 Deamon 可以在同一个系统上运行，也可以将 Client 连接到远端的 Docker deamon。</p>
+<p><img src="https://docs.docker.com/engine/images/architecture.svg" alt="architecture"></p>
+<h3 id="Docker-deamon"><a href="#Docker-deamon" class="headerlink" title="Docker deamon"></a>Docker deamon</h3><p>Docker deamon（dockerd）侦听来自Docker API的请求，并管理 <code>image</code>、<code>Container</code>、<code>Network</code> 和 <code>Volume</code> 等对象。</p>
+<blockquote>
+<p>守护进程还可以与其他守护进程通信，以管理docker服务。</p>
+</blockquote>
+<h3 id="Docker-Client"><a href="#Docker-Client" class="headerlink" title="Docker Client"></a>Docker Client</h3><p>Docker Client（docker）是与 Docker deamon最常用的主要交互方式。</p>
+<blockquote>
+<p>例如：使用 docker run 命令，客户端会将这些命令发送给<code>dockerd</code>，然后由<code>dockerd</code>执行命令。</p>
+</blockquote>
+<h3 id="Docker-registries"><a href="#Docker-registries" class="headerlink" title="Docker registries"></a>Docker registries</h3><p>Docker registries 是一个存储 Docker image 的仓库。</p>
+<blockquote>
+<p>例如：使用 <code>docker pull</code> 或 <code>docker run</code> 命令时，将从配置的 registries 中 提取所需的 image。</p>
+<p>注：默认 registries 为 Docker Hub。</p>
+</blockquote>
+<h3 id="Docker-objects"><a href="#Docker-objects" class="headerlink" title="Docker objects"></a>Docker objects</h3><h4 id="image"><a href="#image" class="headerlink" title="image"></a>image</h4><p>待补充.</p>
+<h4 id="container"><a href="#container" class="headerlink" title="container"></a>container</h4><p>待补充.</p>
+<h4 id="network"><a href="#network" class="headerlink" title="network"></a>network</h4><p>待补充.</p>
+<h4 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h4><p>待补充.</p>
+<hr>
+<h1 id="Docker-底层采用的基础技术"><a href="#Docker-底层采用的基础技术" class="headerlink" title="Docker 底层采用的基础技术"></a>Docker 底层采用的基础技术</h1><p>Docker 采用 <code>Go</code>语言编写，它利用Linux内核的几个功能来为其提供功能。</p>
+<p>容器的底层实现技术：cgroup 和 namespace 是最重要的两种技术。<strong>cgroup</strong> 实现资源限额，<strong>namespace</strong> 实现资源隔离。</p>
+<h2 id="Namespaces"><a href="#Namespaces" class="headerlink" title="Namespaces"></a>Namespaces</h2><p>Docker 采用 Namespaces 技术提供的隔离空间被称为容器。</p>
+<p>Namespaces 管理着 Linux OS 中全局唯一的资源，并且可以让每一个容器认为只有自己在使用这些资源。即 Namespace 实现了容器间的资源隔离。</p>
+<p>运行容器时，Docker 会为该容器创建一组 Namespaces。 Namespaces 提供了隔离效果，容器的都在一个独立的 Namespaces 中运行，其访问权限仅限于该 Namespaces。</p>
+<p>Docker Engine 使用了如下6种 Namespace：</p>
+<ul>
+<li><code>Mnt namespace</code>：管理文件系统挂载点，使容器看上去拥有整个文件系统，即容器拥有自己的 /  并且可以执行mount 和 umount。</li>
+<li><code>UTS namespace</code>：隔离内核和版本标识符，使容器拥有自己的hostname。默认下容器hostname是它的短ID，也可以通过-h 或 –hostname 参数设置。</li>
+<li><code>IPC namespace</code>：管理访问IPC资源，使容器拥有自己的共享内存和信号量（semaphore）来实现进程间的通信，而不会与host和其他容器的IPC混一起。</li>
+<li><code>PID namespace</code>：进程隔离，实现容器独立的一套PID，即 PID = 1 的进程不是 host 的 init 进程。</li>
+<li><code>Net namespace</code>：管理网络接口，使容器拥有自己独立的 网卡、IP、路由等网络资源。</li>
+<li><code>User namespace</code>：使容器能够管理自己的用户，host 无法查看到容器中创建的用户。</li>
+</ul>
+<h2 id="Control-groups"><a href="#Control-groups" class="headerlink" title="Control groups"></a>Control groups</h2><p><strong>cgroup</strong> 全称 Control Group 。Linux OS通过 cgroup 将进程限制为指定资源集，对进程使用CPU、内存、IO资源 进行约束。cgroup 允许 Docker Engine 将可用的硬件资源共享给容器，并对其可用资源进行约束和限制。</p>
+<p>docker 资源限制中的 –cpu-shares 、-m  等参数，实际上是在配置 cgroup <code>/sys/fs/cgroup/</code></p>
+<p>Docker cgroup配置目录：</p>
+<ul>
+<li><code>/sys/fs/cgroup/cpu/docker</code></li>
+<li><code>/sys/fs/cgroup/memory/docker</code></li>
+<li><code>/sys/fs/cgroup/blkio/docker</code></li>
+</ul>
+<blockquote>
+<p>例：在 /sys/fs/cgroup/cpu/docker 目录中，Linux OS会为每个容器创建一个cgroup目录，以容器长ID命名。</p>
+</blockquote>
+<h2 id="Union-file-systems"><a href="#Union-file-systems" class="headerlink" title="Union file systems"></a>Union file systems</h2><p>待补充.</p>
+<h2 id="Container-format"><a href="#Container-format" class="headerlink" title="Container format"></a>Container format</h2><p>待补充.</p>
 
           
         
