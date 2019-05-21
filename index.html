@@ -388,7 +388,7 @@
                 
               
 
-              <time title="Created: 2019-05-21 20:08:07 / Modified: 14:39:00" itemprop="dateCreated datePublished" datetime="2019-05-21T20:08:07+08:00">2019-05-21</time>
+              <time title="Created: 2019-05-21 20:08:07 / Modified: 14:41:02" itemprop="dateCreated datePublished" datetime="2019-05-21T20:08:07+08:00">2019-05-21</time>
             
 
             
@@ -446,7 +446,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">319</span>
+                <span title="Symbols count in article">316</span>
               
 
               
@@ -485,8 +485,7 @@
             <h1 id="Docker-CLI-操作技巧"><a href="#Docker-CLI-操作技巧" class="headerlink" title="Docker CLI 操作技巧"></a>Docker CLI 操作技巧</h1><blockquote>
 <p><a href="https://docs.docker.com/engine/reference/commandline/docker/" target="_blank" rel="noopener">Docs:Docker CLI</a></p>
 </blockquote>
-<p>##批量删除所有exited状态容器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -v $(docker ps -aq -f status=exited)</span><br></pre></td></tr></table></figure>
+<h2 id="批量删除所有exited状态容器"><a href="#批量删除所有exited状态容器" class="headerlink" title="批量删除所有exited状态容器"></a>批量删除所有exited状态容器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -v $(docker ps -aq -f status=exited)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>-v Remove the volumes associated with the container（删除与容器关联的卷）</p>
 </blockquote>
