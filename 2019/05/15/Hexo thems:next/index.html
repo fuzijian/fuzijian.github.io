@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="ZiJian&#39;s Blog">
 <meta property="og:description" content="next:&amp;gt;=v6.0.0  next主题优化设置[头像]编辑主题配置文件_config.yml，将avatar的url参数值设置为头像链接地址：123456789101112# Sidebar Avataravatar:  # In theme directory (source/images): /images/avatar.gif  # In site directory (sour">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-21T08:43:12.496Z">
+<meta property="og:updated_time" content="2019-05-22T09:07:57.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="next主题">
 <meta name="twitter:description" content="next:&amp;gt;=v6.0.0  next主题优化设置[头像]编辑主题配置文件_config.yml，将avatar的url参数值设置为头像链接地址：123456789101112# Sidebar Avataravatar:  # In theme directory (source/images): /images/avatar.gif  # In site directory (sour">
@@ -404,7 +404,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-21 16:43:12" itemprop="dateModified" datetime="2019-05-21T16:43:12+08:00">2019-05-21</time>
+                <time title="Modified: 2019-05-22 17:07:57" itemprop="dateModified" datetime="2019-05-22T17:07:57+08:00">2019-05-22</time>
               
             
           </span>
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">1.7k</span>
+                <span title="Symbols count in article">3.1k</span>
               
 
               
@@ -484,7 +484,7 @@
                 
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
-                <span title="Reading time">2 mins.</span>
+                <span title="Reading time">3 mins.</span>
               
             </div>
           
@@ -520,6 +520,25 @@
 <h2 id="添加看板娘"><a href="#添加看板娘" class="headerlink" title="添加看板娘"></a>添加看板娘</h2><p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/master/README.zh-CN.md" target="_blank" rel="noopener">GitHub-Doc:hexo-hepler-live2d</a></p>
 <h3 id="安装扩展"><a href="#安装扩展" class="headerlink" title="安装扩展"></a>安装扩展</h3><p>在[blog]根目录下执行：<code>npm install --save hexo-hepler-live2d</code></p>
 <h3 id="修改站点配置文件"><a href="#修改站点配置文件" class="headerlink" title="修改站点配置文件"></a>修改站点配置文件</h3><p>向Hexo的<code>_config.yml</code>文件或主题的<code>_config.yml</code>文件添加如下配置：<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">live2d:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  scriptFrom:</span> <span class="string">local</span></span><br><span class="line"><span class="attr">  pluginRootPath:</span> <span class="string">live2dw/</span></span><br><span class="line"><span class="attr">  pluginJsPath:</span> <span class="string">lib/</span></span><br><span class="line"><span class="attr">  pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line"><span class="attr">  tagMode:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  debug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  model:</span></span><br><span class="line"><span class="attr">    use:</span> <span class="string">live2d-widget-model-wanko</span></span><br><span class="line"><span class="attr">  display:</span></span><br><span class="line"><span class="attr">    position:</span> <span class="string">right</span></span><br><span class="line"><span class="attr">    width:</span> <span class="number">150</span></span><br><span class="line"><span class="attr">    height:</span> <span class="number">300</span></span><br><span class="line"><span class="attr">  mobile:</span></span><br><span class="line"><span class="attr">    show:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  react:</span></span><br><span class="line"><span class="attr">    opacity:</span> <span class="number">0.7</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="添加评论功能（Valine）"><a href="#添加评论功能（Valine）" class="headerlink" title="添加评论功能（Valine）"></a>添加评论功能（Valine）</h2><blockquote>
+<p>Valine 是一款基于Leancloud的快速、简洁的无后端评论系统。</p>
+</blockquote>
+<ol>
+<li><p>登陆<a href="https://leancloud.cn/" target="_blank" rel="noopener">Leancloud</a>注册账号</p>
+</li>
+<li><p>登陆成功后在<code>Leancloud</code>中创建一个应用</p>
+</li>
+<li><p>选择【设置】-&gt; 【应用key】复制<code>App ID</code>和<code>App Key</code></p>
+</li>
+<li><p>编辑<code>主题配置文件</code>,搜索<code>Valine</code>填入<code>App ID</code> 和 <code>App Key</code></p>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># You can get your appid and appkey from https://leancloud.cn</span></span><br><span class="line"><span class="comment"># More info available at https://valine.js.org</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span> <span class="comment"># When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.</span></span><br><span class="line"><span class="attr">  appid:</span> <span class="string">*******</span> <span class="comment"># your leancloud application appid</span></span><br><span class="line"><span class="attr">  appkey:</span> <span class="string">*******</span>  <span class="comment"># your leancloud application appkey</span></span><br><span class="line"><span class="attr">  notify:</span> <span class="literal">false</span> <span class="comment"># mail notifier, See: https://github.com/xCss/Valine/wiki</span></span><br><span class="line"><span class="attr">  verify:</span> <span class="literal">false</span> <span class="comment"># Verification code</span></span><br><span class="line"><span class="attr">  placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># comment box placeholder</span></span><br><span class="line"><span class="attr">  avatar:</span> <span class="string">mm</span> <span class="comment"># gravatar style</span></span><br><span class="line"><span class="attr">  guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># custom comment header</span></span><br><span class="line"><span class="attr">  pageSize:</span> <span class="number">10</span> <span class="comment"># pagination size</span></span><br><span class="line"><span class="attr">  language:</span> <span class="comment"># language, available values: en, zh-cn</span></span><br><span class="line"><span class="attr">  visitor:</span> <span class="literal">false</span> <span class="comment"># leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html</span></span><br><span class="line"><span class="attr">  comment_count:</span> <span class="literal">true</span> <span class="comment"># if false, comment count will only be displayed in post page, not in home page</span></span><br></pre></td></tr></table></figure>
+<p>附加配置：</p>
+<p>在【Leancloud】-&gt;【设置】-&gt;【安全中心】-&gt;【Web 安全域名】-&gt; 输入自己的blog域名</p>
+<blockquote>
+<p>设置Web 安全域名后，仅可在该域名下通过 JavaScript SDK调用服务器资源。</p>
+</blockquote>
 
       
     </div>
@@ -782,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#next主题优化"><span class="nav-number">1.</span> <span class="nav-text">next主题优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置-头像"><span class="nav-number">1.1.</span> <span class="nav-text">设置[头像]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加word-count功能"><span class="nav-number">1.2.</span> <span class="nav-text">添加word count功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置页脚"><span class="nav-number">1.3.</span> <span class="nav-text">设置页脚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置站点平台信息"><span class="nav-number">1.3.1.</span> <span class="nav-text">设置站点平台信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加看板娘"><span class="nav-number">1.4.</span> <span class="nav-text">添加看板娘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装扩展"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改站点配置文件"><span class="nav-number">1.4.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#next主题优化"><span class="nav-number">1.</span> <span class="nav-text">next主题优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置-头像"><span class="nav-number">1.1.</span> <span class="nav-text">设置[头像]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加word-count功能"><span class="nav-number">1.2.</span> <span class="nav-text">添加word count功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置页脚"><span class="nav-number">1.3.</span> <span class="nav-text">设置页脚</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置站点平台信息"><span class="nav-number">1.3.1.</span> <span class="nav-text">设置站点平台信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加看板娘"><span class="nav-number">1.4.</span> <span class="nav-text">添加看板娘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装扩展"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装扩展</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改站点配置文件"><span class="nav-number">1.4.2.</span> <span class="nav-text">修改站点配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论功能（Valine）"><span class="nav-number">1.5.</span> <span class="nav-text">添加评论功能（Valine）</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -815,7 +834,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">7k</span>
+    <span title="Symbols count total">8k</span>
   
 
   
@@ -824,7 +843,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">6 mins.</span>
+    <span title="Reading time total">8 mins.</span>
   
 </div>
 
