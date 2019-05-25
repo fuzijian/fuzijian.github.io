@@ -527,269 +527,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/23/Oxidized/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZiJian Fu">
-      <meta itemprop="description" content="Keep it simple.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZiJian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/23/Oxidized/" class="post-title-link" itemprop="url">使用 Oxidized 实现网络设备配置自动化备份</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-23 17:59:53" itemprop="dateCreated datePublished" datetime="2019-05-23T17:59:53+08:00">2019-05-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-25 17:50:36" itemprop="dateModified" datetime="2019-05-25T17:50:36+08:00">2019-05-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/网络自动化/" itemprop="url" rel="index"><span itemprop="name">网络自动化</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/23/Oxidized/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/23/Oxidized/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">4.5k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">4 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>#概述</p>
-<p>Oxidized 是一个网络设备配置<strong>自动化备份</strong>工具。</p>
-<p>优点：轻便、可扩展，并且支持多种操作系统（目前支持115种）。</p>
-<p><a href="https://www.github.com/ytti/oxidized" target="_blank" rel="noopener">Github：oxidized</a></p>
-<h1 id="使用docker部署oxidized"><a href="#使用docker部署oxidized" class="headerlink" title="使用docker部署oxidized"></a>使用docker部署oxidized</h1><h2 id="如何获取-docker-镜像"><a href="#如何获取-docker-镜像" class="headerlink" title="如何获取 docker 镜像"></a>如何获取 docker 镜像</h2><h3 id="手动构建docker镜像"><a href="#手动构建docker镜像" class="headerlink" title="手动构建docker镜像"></a>手动构建docker镜像</h3><h4 id="clone-项目源码"><a href="#clone-项目源码" class="headerlink" title="clone 项目源码"></a>clone 项目源码</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/ytti/oxidized</span><br></pre></td></tr></table></figure>
-<h4 id="build-镜像"><a href="#build-镜像" class="headerlink" title="build 镜像"></a>build 镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -q -t oxidized/oxidized:latest oxidized/</span><br></pre></td></tr></table></figure>
-<h3 id="使用取docker-hub上的docker镜像"><a href="#使用取docker-hub上的docker镜像" class="headerlink" title="使用取docker hub上的docker镜像"></a>使用取docker hub上的docker镜像</h3><p><a href="https://hub.docker.com/r/oxidized/oxidized/" target="_blank" rel="noopener">Docker Hub: oxidized/oxidized</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull oxidized/oxidized</span><br></pre></td></tr></table></figure>
-<h2 id="初始化oxidized配置文件"><a href="#初始化oxidized配置文件" class="headerlink" title="初始化oxidized配置文件"></a>初始化oxidized配置文件</h2><p>创建配置文件目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/oxidized</span><br></pre></td></tr></table></figure>
-<p>创建oxidized配置文件<strong><em>如果已有配置文件，可以跳过此步骤</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -v /etc/oxidized:/root/.config/oxidized -p 8888:8888/tcp -t oxidized/oxidized:latest oxidized</span><br></pre></td></tr></table></figure>
-<h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>config 文件是 oxidized 主要配置文件。以下配置为示例：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">username:</span> <span class="string">username</span> </span><br><span class="line"><span class="attr">password:</span> <span class="string">password</span> </span><br><span class="line"><span class="attr">model:</span> <span class="string">junos</span></span><br><span class="line"><span class="attr">resolve_dns:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">interval:</span> <span class="number">36000</span> <span class="comment"># interval in seconds</span></span><br><span class="line"><span class="attr">use_syslog:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">debug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">threads:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">timeout:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">retries:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">prompt:</span> <span class="type">!ruby</span><span class="string">/regexp</span> <span class="string">/^([\w.:@-]+[#&gt;]\s?)$/</span></span><br><span class="line"><span class="attr">rest:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span><span class="string">:8888</span></span><br><span class="line"><span class="attr">next_adds_job:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">vars:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">groups:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">models:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">pid:</span> <span class="string">"/root/.config/oxidized/pid"</span></span><br><span class="line"><span class="attr">crash:</span></span><br><span class="line"><span class="attr">  directory:</span> <span class="string">"/root/.config/oxidized/crashes"</span></span><br><span class="line"><span class="attr">  hostnames:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">stats:</span></span><br><span class="line"><span class="attr">  history_size:</span> <span class="number">10</span></span><br><span class="line"><span class="attr">input:</span></span><br><span class="line"><span class="attr">  default:</span> <span class="string">ssh,</span> <span class="string">telnet</span></span><br><span class="line"><span class="attr">  debug:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  ssh:</span></span><br><span class="line"><span class="attr">    secure:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">  ftp:</span></span><br><span class="line"><span class="attr">    passive:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  utf8_encoded:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">output:</span></span><br><span class="line"><span class="attr">  default:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  git:</span></span><br><span class="line"><span class="attr">    user:</span> <span class="string">oxidized</span></span><br><span class="line"><span class="attr">    email:</span> <span class="string">oxidized@exmaple.com</span></span><br><span class="line"><span class="attr">    repo:</span> <span class="string">"/root/.config/oxidized/device.git"</span></span><br><span class="line"><span class="attr">source:</span></span><br><span class="line"><span class="attr">  default:</span> <span class="string">csv</span></span><br><span class="line"><span class="attr">  csv:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">"/root/.config/oxidized/route.db"</span></span><br><span class="line"><span class="attr">    delimiter:</span> <span class="type">!ruby</span><span class="string">/regexp</span> <span class="string">/:/</span></span><br><span class="line"><span class="attr">    map:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="number">0</span></span><br><span class="line"><span class="attr">      ip:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">      model:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">      group:</span> <span class="number">3</span></span><br><span class="line"><span class="attr">      username:</span> <span class="number">4</span></span><br><span class="line"><span class="attr">      password:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">    vars_map:</span></span><br><span class="line"><span class="attr">      enable:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">  sql:</span></span><br><span class="line"><span class="attr">    adapter:</span> <span class="string">sqlite</span></span><br><span class="line"><span class="attr">    database:</span> <span class="string">"/root/.config/oxidized/nodes.db"</span></span><br><span class="line"><span class="attr">    table:</span> <span class="string">nodes</span></span><br><span class="line"><span class="attr">    map:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">name</span></span><br><span class="line"><span class="attr">      ip:</span> <span class="string">ip</span></span><br><span class="line"><span class="attr">      model:</span> <span class="string">model</span></span><br><span class="line"><span class="attr">      username:</span> <span class="string">username</span></span><br><span class="line"><span class="attr">      password:</span> <span class="string">password</span></span><br><span class="line"><span class="attr">      group:</span> <span class="string">group</span></span><br><span class="line"><span class="attr">    vars_map:</span></span><br><span class="line"><span class="attr">      enable:</span> <span class="string">enable</span></span><br><span class="line"><span class="attr">model_map:</span></span><br><span class="line"><span class="attr">  juniper:</span> <span class="string">junos</span></span><br><span class="line"><span class="attr">  cisco:</span> <span class="string">ios</span></span><br></pre></td></tr></table></figure>
-<h4 id="source：csv"><a href="#source：csv" class="headerlink" title="source：csv"></a>source：csv</h4><p>设备信息来源为csv文件</p>
-<p>创建\修改文件内容，文件内容列与config配置文件中的<code>map</code>配置相对应</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.config/oxidized/route.db</span><br><span class="line"><span class="meta">#</span> name:ip:model:username:password:group:enable</span><br><span class="line">host1:192.168.0.1:comware:admin:admin::</span><br></pre></td></tr></table></figure>
-<h4 id="output：git"><a href="#output：git" class="headerlink" title="output：git"></a>output：git</h4><h3 id="model"><a href="#model" class="headerlink" title="model"></a>model</h3><h4 id="comware"><a href="#comware" class="headerlink" title="comware"></a>comware</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comware</span> &lt; Oxidized::Model</span></span><br><span class="line">  <span class="comment"># HP (A-series)/H3C/3Com Comware</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># sometimes the prompt might have a leading nul or trailing ASCII Bell (^G)</span></span><br><span class="line">  prompt /^\<span class="number">0</span>*(&lt;[\w.-]+&gt;).?$/</span><br><span class="line">  comment <span class="string">'# '</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># example how to handle pager</span></span><br><span class="line">  <span class="comment"># expect /^\s*---- More ----$/ do |data, re|</span></span><br><span class="line">  <span class="comment">#  send ' '</span></span><br><span class="line">  <span class="comment">#  data.sub re, ''</span></span><br><span class="line">  <span class="comment"># end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:all</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    <span class="comment"># cfg.gsub! /^.*\e\[42D/, ''        # example how to handle pager</span></span><br><span class="line">    <span class="comment"># skip rogue ^M</span></span><br><span class="line">    cfg = cfg.delete <span class="string">"\r"</span></span><br><span class="line">    cfg.cut_both</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:secret</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( snmp-agent community).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( password hash).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span> <span class="keyword">do</span></span><br><span class="line">    username /^<span class="symbol">Username:</span>$/</span><br><span class="line">    password /^<span class="symbol">Password:</span>$/</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span>, <span class="symbol">:ssh</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># enable command-line mode on SMB comware switches (HP V1910, V1920)</span></span><br><span class="line">    <span class="comment"># autodetection is hard, because the 'summary' command is paged, and</span></span><br><span class="line">    <span class="comment"># the pager cannot be disabled before _cmdline-mode on.</span></span><br><span class="line">    <span class="keyword">if</span> vars <span class="symbol">:comware_cmdline</span></span><br><span class="line">      post_login <span class="keyword">do</span></span><br><span class="line">        send <span class="string">"_cmdline-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">        send <span class="string">"xtd-cli-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    post_login <span class="string">'screen-length disable'</span></span><br><span class="line">    post_login <span class="string">'undo terminal monitor'</span></span><br><span class="line">    pre_logout <span class="string">'quit'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display version'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg = cfg.each_line.reject &#123; <span class="params">|l|</span> l.match /uptime/i &#125;.join</span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display device'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display current-configuration'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h2 id="启动oxidized容器"><a href="#启动oxidized容器" class="headerlink" title="启动oxidized容器"></a>启动oxidized容器</h2><h3 id="使用-docker-compose-启动-oxidized容器"><a href="#使用-docker-compose-启动-oxidized容器" class="headerlink" title="使用 docker-compose 启动 oxidized容器"></a>使用 docker-compose 启动 oxidized容器</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">oxidized:</span></span><br><span class="line"><span class="attr">  restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">oxidized/oxidized:latest</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">8888</span><span class="string">:8888/tcp</span></span><br><span class="line"><span class="attr">  environment:</span></span><br><span class="line"><span class="attr">    CONFIG_RELOAD_INTERVAL:</span> <span class="number">600</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/localtime:/etc/localtime:ro</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/oxidized:/root/.config/oxidized</span></span><br></pre></td></tr></table></figure>
-<h1 id="部署过程中遇到的一些问题"><a href="#部署过程中遇到的一些问题" class="headerlink" title="部署过程中遇到的一些问题"></a>部署过程中遇到的一些问题</h1><h2 id="comware-平台"><a href="#comware-平台" class="headerlink" title="comware 平台"></a>comware 平台</h2><h3 id="没有找到匹配字符，无法连接到目标主机。"><a href="#没有找到匹配字符，无法连接到目标主机。" class="headerlink" title="没有找到匹配字符，无法连接到目标主机。"></a>没有找到匹配字符，无法连接到目标主机。</h3><p>查看 log 错误提示如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f dockername</span><br><span class="line">x.x.x.x raised Oxidized::PromptUndetect with msg &quot;unable to detect prompt: (?-mix:^\0*(&lt;[\w:.-]+&gt;).?$)&quot;</span><br><span class="line">xxx status no_connection, retry attempt 1</span><br></pre></td></tr></table></figure>
-<p>错误原因：</p>
-<ul>
-<li>交换机主机名中含有特殊字符<code>:</code>，但是<code>comware.rb</code>模型中正则表达式没有匹配<code>:</code></li>
-</ul>
-<p>解决方法：</p>
-<ul>
-<li><p>编辑comware.rb`配置文件：匹配主机名特殊字符的正则表达式。</p>
-<ul>
-<li><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改前：</span><br><span class="line">prompt /^\<span class="number">0</span>*(&lt;[\w.-]+&gt;).?$/</span><br><span class="line">修改后：</span><br><span class="line">prompt /^\<span class="number">0</span>*(&lt;[\<span class="symbol">w:</span>.-]+&gt;).?$/</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="登陆使用telnel协议的设备失败，使用ssh协议的设备正常。"><a href="#登陆使用telnel协议的设备失败，使用ssh协议的设备正常。" class="headerlink" title="登陆使用telnel协议的设备失败，使用ssh协议的设备正常。"></a>登陆使用telnel协议的设备失败，使用ssh协议的设备正常。</h3><p>错误原因：</p>
-<ul>
-<li>因为华三交换机comwre平台版本不同，telnet登陆提示符也有差异。所以<code>comware.rb</code>模型配置中，匹配telnet登陆提示的正则表达式没有匹配所有版本的登陆提示符。</li>
-</ul>
-<p>解决方法：</p>
-<ul>
-<li><p>编辑<code>comware.rb</code>配置文件：修改匹配telnet登陆提示符的正则表达式。</p>
-<ul>
-<li><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">修改前：</span><br><span class="line">cfg <span class="symbol">:telnet</span> <span class="keyword">do</span></span><br><span class="line">    username /^<span class="symbol">Username:</span>$/</span><br><span class="line">    password /^<span class="symbol">Password:</span>$/</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">修改后：</span><br><span class="line">cfg <span class="symbol">:telnet</span> <span class="keyword">do</span></span><br><span class="line">    username /^[uU]<span class="symbol">sername:</span><span class="params">|[lL]ogin: $/</span></span><br><span class="line"><span class="params">    password /^[pP]assword:|</span>[pP]<span class="symbol">assword:</span> $/</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>华三 comware v7 平台登陆提示符 <code>login:</code>后面有个空格<code></code>写正则表达式的时候注意匹配到！</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker CLI skills/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2456,7 +2193,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2489,9 +2226,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2520,9 +2255,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2613,7 +2346,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">13k</span>
+    <span title="Symbols count total">8k</span>
   
 
   
@@ -2622,7 +2355,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">12 mins.</span>
+    <span title="Reading time total">8 mins.</span>
   
 </div>
 
