@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: false,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本部署教程根据官方文档编写 OpenStack 官方文档 https://docs.openstack.org/install-guide/environment.html https://docs.openstack.org/stein/  基础环境搭建 操作系统：CentOS 7 最低配置要求：  控制器节点：1个处理器、4 GB内存、5 GB存储、2张网卡 计算节点：1个处理器、2 GB">
+<meta name="keywords" content="OpenStack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack Stein 手工部署">
+<meta property="og:url" content="http://fuzijian.github.io/2019/05/27/OpenStack Stein/index.html">
+<meta property="og:site_name" content="ZiJian&#39;s Blog">
+<meta property="og:description" content="本部署教程根据官方文档编写 OpenStack 官方文档 https://docs.openstack.org/install-guide/environment.html https://docs.openstack.org/stein/  基础环境搭建 操作系统：CentOS 7 最低配置要求：  控制器节点：1个处理器、4 GB内存、5 GB存储、2张网卡 计算节点：1个处理器、2 GB">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-28T14:32:43.024Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenStack Stein 手工部署">
+<meta name="twitter:description" content="本部署教程根据官方文档编写 OpenStack 官方文档 https://docs.openstack.org/install-guide/environment.html https://docs.openstack.org/stein/  基础环境搭建 操作系统：CentOS 7 最低配置要求：  控制器节点：1个处理器、4 GB内存、5 GB存储、2张网卡 计算节点：1个处理器、2 GB">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://fuzijian.github.io/2019/05/27/OpenStack Stein/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>OpenStack Stein 手工部署 | ZiJian's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZiJian's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/27/OpenStack Stein/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OpenStack Stein 手工部署
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-27 12:07:40" itemprop="dateCreated datePublished" datetime="2019-05-27T12:07:40+08:00">2019-05-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-28 22:32:43" itemprop="dateModified" datetime="2019-05-28T22:32:43+08:00">2019-05-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OpenStack/" itemprop="url" rel="index"><span itemprop="name">OpenStack</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/27/OpenStack Stein/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/OpenStack Stein/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">4.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">4 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p> 本部署教程根据官方文档编写</p>
+<p>OpenStack 官方文档</p>
+<p><a href="https://docs.openstack.org/install-guide/environment.html" target="_blank" rel="noopener">https://docs.openstack.org/install-guide/environment.html</a></p>
+<p><a href="https://docs.openstack.org/stein/" target="_blank" rel="noopener">https://docs.openstack.org/stein/</a></p>
+</blockquote>
+<h1 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h1><blockquote>
+<p>操作系统：CentOS 7</p>
+<p>最低配置要求：</p>
+<ul>
+<li>控制器节点：1个处理器、4 GB内存、5 GB存储、2张网卡</li>
+<li>计算节点：1个处理器、2 GB内存、10 GB存储、2张网卡</li>
+</ul>
+<p>注：推荐使用虚拟机进行搭建，可以根据部署进度进行快照方便回滚。</p>
+</blockquote>
+<h2 id="配置主机网络"><a href="#配置主机网络" class="headerlink" title="配置主机网络"></a>配置主机网络</h2><h3 id="控制节点"><a href="#控制节点" class="headerlink" title="控制节点"></a>控制节点</h3><h4 id="配置网络接口"><a href="#配置网络接口" class="headerlink" title="配置网络接口"></a>配置网络接口</h4><p>配置第一个接口<code>eth0</code>作为管理接口：</p>
+<ul>
+<li>IP地址：192.168.200.11</li>
+<li>网络掩码：255.255.255.0</li>
+<li>默认网关：192.168.200.254</li>
+</ul>
+<p>配置第二个接口<code>eth1</code>作为提供者网络：</p>
+<p>编辑<code>/etc/sysconfig/network-scripts/ifcfg-eth1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=INTERFACE_NAME</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">BOOTPROTO=&quot;none&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意不要更改 <code>HWADDR</code> 与 <code>UUID</code></p>
+</blockquote>
+<p>配置完成后查看网卡状态是否正常，例如：<code>ifconfig</code>、<code>ipadd</code>、<code>nmcli con show</code></p>
+<h4 id="配置主机名解析"><a href="#配置主机名解析" class="headerlink" title="配置主机名解析"></a>配置主机名解析</h4><ol>
+<li>将控制节点的主机名设置为<code>controller</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname controller</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>编辑<code>/etc/hosts</code>文件，添加以下主机解析内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># controller</span><br><span class="line">192.168.200.11       controller</span><br><span class="line"></span><br><span class="line"># compute1</span><br><span class="line">192.168.200.31       compute1</span><br><span class="line"></span><br><span class="line"># block1</span><br><span class="line">192.168.200.41       block1</span><br><span class="line"></span><br><span class="line"># object1</span><br><span class="line">192.168.200.51       object1</span><br><span class="line"></span><br><span class="line"># object2</span><br><span class="line">192.168.200.52       object2</span><br></pre></td></tr></table></figure>
+<h3 id="计算节点"><a href="#计算节点" class="headerlink" title="计算节点"></a>计算节点</h3><h4 id="配置网络接口-1"><a href="#配置网络接口-1" class="headerlink" title="配置网络接口"></a>配置网络接口</h4><p>配置第一个接口<code>eth0</code>作为管理接口：</p>
+<ul>
+<li>IP地址：192.168.200.31</li>
+<li>网络掩码：255.255.255.0</li>
+<li>默认网关：192.168.200.254</li>
+</ul>
+<p>配置第二个接口<code>eth1</code>作为提供者网络：</p>
+<p>编辑<code>/etc/sysconfig/network-scripts/ifcfg-eth1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=INTERFACE_NAME</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">BOOTPROTO=&quot;none&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意不要更改 <code>HWADDR</code> 与 <code>UUID</code></p>
+</blockquote>
+<blockquote>
+<p> 配置完成后查看网卡状态是否正常，例如：<code>ifconfig</code>、<code>ipadd</code>、<code>nmcli con show</code></p>
+</blockquote>
+<h4 id="配置主机名解析-1"><a href="#配置主机名解析-1" class="headerlink" title="配置主机名解析"></a>配置主机名解析</h4><ol>
+<li>将控制节点的主机名设置为<code>compute1</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname compute1</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>编辑<code>/etc/hosts</code>文件，添加以下主机解析内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># controller</span><br><span class="line">192.168.200.11       controller</span><br><span class="line"></span><br><span class="line"># compute1</span><br><span class="line">192.168.200.31       compute1</span><br><span class="line"></span><br><span class="line"># block1</span><br><span class="line">192.168.200.41       block1</span><br><span class="line"></span><br><span class="line"># object1</span><br><span class="line">192.168.200.51       object1</span><br><span class="line"></span><br><span class="line"># object2</span><br><span class="line">192.168.200.52       object2</span><br></pre></td></tr></table></figure>
+<h3 id="验证连通性"><a href="#验证连通性" class="headerlink" title="验证连通性"></a>验证连通性</h3><ol>
+<li><p>在控制节点上验证</p>
+<ul>
+<li><code>ping -c 4 www.baidu.com</code></li>
+<li><code>ping -c 4 compute1</code></li>
+</ul>
+</li>
+<li><p>在计算节点上验证</p>
+<ul>
+<li><p><code>ping -c 4 www.baidu.com</code></p>
+</li>
+<li><p><code>ping -c 4 controller</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>验证是否能正常通信。</p>
+</blockquote>
+<h2 id="配置NTP"><a href="#配置NTP" class="headerlink" title="配置NTP"></a>配置NTP</h2><h3 id="控制节点-1"><a href="#控制节点-1" class="headerlink" title="控制节点"></a>控制节点</h3><p>安装、配置 <code>chrony</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装chrony包</span><br><span class="line">yum install chrony</span><br><span class="line"><span class="meta">#</span> 编辑/etc/chrony.conf，配置合适的ntp服务器（不配置也可以，默认配置会有公共的ntp服务器）</span><br><span class="line">server NTP_SERVER iburst</span><br><span class="line"><span class="meta">#</span> 允许其他节点能够连接此ntp服务器</span><br><span class="line">ehco "allow 192.168.200.0/24" &gt;&gt; /etc/chrony.conf</span><br><span class="line"><span class="meta">#</span> 重启NTP</span><br><span class="line">systemctl enable chronyd.service</span><br><span class="line">systemctl start chronyd.service</span><br></pre></td></tr></table></figure>
+<h3 id="其他节点"><a href="#其他节点" class="headerlink" title="其他节点"></a>其他节点</h3><p>安装、配置 <code>chrony</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装chrony包</span><br><span class="line">yum install chrony</span><br><span class="line"><span class="meta">#</span> 编辑/etc/chrony.conf，配置ntp server为计算节点</span><br><span class="line">server controller iburst</span><br><span class="line"><span class="meta">#</span> 重启NTP</span><br><span class="line">systemctl enable chronyd.service</span><br><span class="line">systemctl start chronyd.service</span><br></pre></td></tr></table></figure>
+<h3 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h3><p>验证NTP同步、NTP服务器是否正确</p>
+<ol>
+<li><p>控制节点执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装-OpenStack-软件包"><a href="#安装-OpenStack-软件包" class="headerlink" title="安装 OpenStack 软件包"></a>安装 OpenStack 软件包</h2><blockquote>
+<p>OpenStack包的设置需要在所有节点上完成：控制、计算和块存储节点。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装OpenStack存储库</span><br><span class="line">yum install centos-release-openstack-stein</span><br><span class="line"><span class="meta">#</span> 升级软件包</span><br><span class="line">yum upgrade</span><br><span class="line"><span class="meta">#</span> 安装OpenStack客户端</span><br><span class="line">yum install python-openstackclient</span><br><span class="line"><span class="meta">#</span> 由于CentOS默认启用SElinux，安装openstack-selinux以自动管理openstack服务的selinux安全策略</span><br><span class="line">yum install openstack-selinux</span><br></pre></td></tr></table></figure>
+<h2 id="配置-SQL-数据库"><a href="#配置-SQL-数据库" class="headerlink" title="配置 SQL 数据库"></a>配置 SQL 数据库</h2><blockquote>
+<p>数据库：Mariadb</p>
+<p>数据库通常在<strong>控制节点</strong>上运行</p>
+<p>注：此教程数据库安装在<strong>控制节点</strong>。</p>
+</blockquote>
+<h3 id="安装、配置组件"><a href="#安装、配置组件" class="headerlink" title="安装、配置组件"></a>安装、配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install mariadb mariadb-server python2-PyMySQL</span><br><span class="line"><span class="meta">#</span> 备份现有配置文件</span><br><span class="line">cp /etc/my.cnf.d/ /etc/my.cnf.d.backup/</span><br><span class="line"><span class="meta">#</span> 编辑配置文件</span><br><span class="line">vim /etc/my.cnf.d/openstack.cnf</span><br><span class="line"><span class="meta">#</span># 创建[mysqld]部分，并添加如下配置</span><br><span class="line"><span class="meta">#</span>## bind-address 为控制节点的管理IP地址（其他节点可通过此IP访问该数据库）</span><br><span class="line">[mysqld]</span><br><span class="line">bind-address = 192.168.200.11</span><br><span class="line">default-storage-engine = innodb</span><br><span class="line">innodb_file_per_table = on</span><br><span class="line">max_connections = 4096</span><br><span class="line">collation-server = utf8_general_ci</span><br><span class="line">character-set-server = utf8</span><br></pre></td></tr></table></figure>
+<h3 id="完成安装"><a href="#完成安装" class="headerlink" title="完成安装"></a>完成安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动数据库服务，并设置开机引导时自启。</span><br><span class="line">systemctl enable mariadb.service</span><br><span class="line">systemctl start mariadb.service</span><br><span class="line"><span class="meta">#</span> 初始化数据库（重要！设置数据库root用户密码）</span><br><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<h2 id="配置消息队列服务（RabbitMQ）"><a href="#配置消息队列服务（RabbitMQ）" class="headerlink" title="配置消息队列服务（RabbitMQ）"></a>配置消息队列服务（RabbitMQ）</h2><ul>
+<li>OpenStack 使用<strong>消息队列</strong>来协议各个服务之间的操作和状态信息。消息队列通常在控制节点上运行。OpenStack还支持多种消息队列服务，包括<a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">RabbitMQ</a>， <a href="https://qpid.apache.org/" target="_blank" rel="noopener">Qpid</a>和<a href="http://zeromq.org/" target="_blank" rel="noopener">ZeroMQ</a><ul>
+<li>因为大多数发行版（OpenStack发行版？Linux发行版？）都支持RabbitMQ，所以本次也采用RabbitMQ实现消息队列服务</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在控制节点上安装RabbitMQ</p>
+</blockquote>
+<h3 id="安装和配置组件"><a href="#安装和配置组件" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install rabbitmq-server</span><br><span class="line"><span class="meta">#</span> 启动消息队列服务并将其配置为在系统引导时启动：</span><br><span class="line">systemctl enable rabbitmq-server.service</span><br><span class="line">systemctl start rabbitmq-server.service</span><br><span class="line"><span class="meta">#</span> 添加openstack用户(此处用户密码为openstack)</span><br><span class="line">rabbitmqctl add_user openstack openstack</span><br><span class="line"><span class="meta">#</span> 允许用户进行配置，写入和读取访问 openstack：</span><br><span class="line">rabbitmqctl set_permissions openstack ".*" ".*" ".*"</span><br><span class="line">Setting permissions for user "openstack" in vhost "/" ...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记住此次配置的RabbitMQ 用户和密码，后面会部署OpenStack一些服务会用到。</p>
+</blockquote>
+<h2 id="配置-Memcached"><a href="#配置-Memcached" class="headerlink" title="配置 Memcached"></a>配置 Memcached</h2><p>服务的身份服务身份验证机制使用Memcached来缓存令牌。memcached服务通常在控制器节点上运行。</p>
+<blockquote>
+<p>在控制节点上部署Memcached服务。</p>
+</blockquote>
+<h3 id="安装和配置组件-1"><a href="#安装和配置组件-1" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包：</span><br><span class="line">yum install memcached python-memcached</span><br><span class="line"><span class="meta">#</span> 编辑/etc/sysconfig/memcached文件并完成以下操作：</span><br><span class="line"><span class="meta">#</span># 配置服务以使用控制器节点的管理IP地址。这是为了通过管理网络启用其他节点的访问：</span><br><span class="line">OPTIONS="-l 127.0.0.1,::1,controller"</span><br><span class="line"><span class="meta">#</span> 启动Memcached服务并将其配置为在系统引导时启动：</span><br><span class="line">systemctl enable memcached.service</span><br><span class="line">systemctl start memcached.service</span><br></pre></td></tr></table></figure>
+<h2 id="配置-Etcd"><a href="#配置-Etcd" class="headerlink" title="配置 Etcd"></a>配置 Etcd</h2><p>OpenStack服务可以使用Etcd，一种分布式的可靠的键值存储，用于密钥锁定、存储配置、跟踪服务生存和其他场景。</p>
+<blockquote>
+<p> 在控制节点上部署Etcd服务。</p>
+</blockquote>
+<h3 id="安装和配置组件-2"><a href="#安装和配置组件-2" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install etcd</span><br><span class="line"><span class="meta">#</span> 编辑/etc/etcd/etcd.conf</span><br><span class="line"><span class="meta">#</span># 设置ETCD_INITIAL_CLUSTER， ETCD_INITIAL_ADVERTISE_PEER_URLS，ETCD_ADVERTISE_CLIENT_URLS， ETCD_LISTEN_CLIENT_URLS</span><br><span class="line"><span class="meta">#</span>[Member]</span><br><span class="line">ETCD_DATA_DIR="/var/lib/etcd/default.etcd"</span><br><span class="line">ETCD_LISTEN_PEER_URLS="http://192.168.200.11:2380"</span><br><span class="line">ETCD_LISTEN_CLIENT_URLS="http://192.168.200.11:2379"</span><br><span class="line">ETCD_NAME="controller"</span><br><span class="line"><span class="meta">#</span>[Clustering]</span><br><span class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS="http://192.168.200.11:2380"</span><br><span class="line">ETCD_ADVERTISE_CLIENT_URLS="http://192.168.200.11:2379"</span><br><span class="line">ETCD_INITIAL_CLUSTER="controller=http://192.168.200.11:2380"</span><br><span class="line">ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"</span><br><span class="line">ETCD_INITIAL_CLUSTER_STATE="new"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启用并配置开机启动etcd服务</span><br><span class="line">systemctl enable etcd</span><br><span class="line">systemctl start etcd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>至此基础环境已搭建完成，记得给虚拟机打个快照。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenStack/" rel="tag"># OpenStack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/27/Linux command skills/" rel="next" title="Linux command 技巧汇总">
+                <i class="fa fa-chevron-left"></i> Linux command 技巧汇总
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/28/Zabbix/" rel="prev" title>
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="ZiJian Fu">
+            
+              <p class="site-author-name" itemprop="name">ZiJian Fu</p>
+              <div class="site-description motion-element" itemprop="description">Keep it simple.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/fuzijian" title="GitHub &rarr; https://github.com/fuzijian" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yourname@gmail.com" title="E-Mail &rarr; mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础环境搭建"><span class="nav-number">1.</span> <span class="nav-text">基础环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置主机网络"><span class="nav-number">1.1.</span> <span class="nav-text">配置主机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制节点"><span class="nav-number">1.1.1.</span> <span class="nav-text">控制节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置网络接口"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">配置网络接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置主机名解析"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">配置主机名解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算节点"><span class="nav-number">1.1.2.</span> <span class="nav-text">计算节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置网络接口-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">配置网络接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置主机名解析-1"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">配置主机名解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证连通性"><span class="nav-number">1.1.3.</span> <span class="nav-text">验证连通性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置NTP"><span class="nav-number">1.2.</span> <span class="nav-text">配置NTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制节点-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">控制节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他节点"><span class="nav-number">1.2.2.</span> <span class="nav-text">其他节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证配置"><span class="nav-number">1.2.3.</span> <span class="nav-text">验证配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-OpenStack-软件包"><span class="nav-number">1.3.</span> <span class="nav-text">安装 OpenStack 软件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-SQL-数据库"><span class="nav-number">1.4.</span> <span class="nav-text">配置 SQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装、配置组件"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装、配置组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完成安装"><span class="nav-number">1.4.2.</span> <span class="nav-text">完成安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置消息队列服务（RabbitMQ）"><span class="nav-number">1.5.</span> <span class="nav-text">配置消息队列服务（RabbitMQ）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置组件"><span class="nav-number">1.5.1.</span> <span class="nav-text">安装和配置组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Memcached"><span class="nav-number">1.6.</span> <span class="nav-text">配置 Memcached</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置组件-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">安装和配置组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置-Etcd"><span class="nav-number">1.7.</span> <span class="nav-text">配置 Etcd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装和配置组件-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">安装和配置组件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZiJian Fu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">19k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">17 mins.</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: false,
+    appId: 'sG7xh7xROA0OiPYewc9EbWkA-gzGzoHsz',
+    appKey: 'ITvasvvMB4TEcQt48MEbV5mk',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

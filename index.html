@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/25/类UNIX系统命令技巧/">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/28/Zabbix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZiJian Fu">
@@ -363,7 +363,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/25/类UNIX系统命令技巧/" class="post-title-link" itemprop="url">Untitled</a>
+                <a href="/2019/05/28/Zabbix/" class="post-title-link" itemprop="url">Untitled</a>
               
             
           </h1>
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="Created: 2019-05-25 16:19:36 / Modified: 16:20:43" itemprop="dateCreated datePublished" datetime="2019-05-25T16:19:36+08:00">2019-05-25</time>
+              <time title="Created: 2019-05-28 15:05:33 / Modified: 15:38:21" itemprop="dateCreated datePublished" datetime="2019-05-28T15:05:33+08:00">2019-05-28</time>
             
 
             
@@ -411,8 +411,944 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/25/类UNIX系统命令技巧/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/类UNIX系统命令技巧/" itemprop="commentCount"></span>
+                <a href="/2019/05/28/Zabbix/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/28/Zabbix/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">246</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><blockquote>
+<p>非生产环境，仅个人监控使用。所以采用了 docker 容器化部署，以最简单的方式先用起来。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name zabbix-appliance -p 80:80 -p 10051:10051 -d zabbix/zabbix-appliance:latest</span><br></pre></td></tr></table></figure>
+<h1 id="配置设备自动发现，并自动添加到群组、关联模版"><a href="#配置设备自动发现，并自动添加到群组、关联模版" class="headerlink" title="配置设备自动发现，并自动添加到群组、关联模版"></a>配置设备自动发现，并自动添加到群组、关联模版</h1><p><a href="https://www.zabbix.com/documentation/4.2/manual/discovery/network_discovery/rule" target="_blank" rel="noopener">https://www.zabbix.com/documentation/4.2/manual/discovery/network_discovery/rule</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/27/OpenStack Stein/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/27/OpenStack Stein/" class="post-title-link" itemprop="url">OpenStack Stein 手工部署</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-27 12:07:40" itemprop="dateCreated datePublished" datetime="2019-05-27T12:07:40+08:00">2019-05-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-28 22:32:43" itemprop="dateModified" datetime="2019-05-28T22:32:43+08:00">2019-05-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/OpenStack/" itemprop="url" rel="index"><span itemprop="name">OpenStack</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/27/OpenStack Stein/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/OpenStack Stein/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">4.7k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">4 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p> 本部署教程根据官方文档编写</p>
+<p>OpenStack 官方文档</p>
+<p><a href="https://docs.openstack.org/install-guide/environment.html" target="_blank" rel="noopener">https://docs.openstack.org/install-guide/environment.html</a></p>
+<p><a href="https://docs.openstack.org/stein/" target="_blank" rel="noopener">https://docs.openstack.org/stein/</a></p>
+</blockquote>
+<h1 id="基础环境搭建"><a href="#基础环境搭建" class="headerlink" title="基础环境搭建"></a>基础环境搭建</h1><blockquote>
+<p>操作系统：CentOS 7</p>
+<p>最低配置要求：</p>
+<ul>
+<li>控制器节点：1个处理器、4 GB内存、5 GB存储、2张网卡</li>
+<li>计算节点：1个处理器、2 GB内存、10 GB存储、2张网卡</li>
+</ul>
+<p>注：推荐使用虚拟机进行搭建，可以根据部署进度进行快照方便回滚。</p>
+</blockquote>
+<h2 id="配置主机网络"><a href="#配置主机网络" class="headerlink" title="配置主机网络"></a>配置主机网络</h2><h3 id="控制节点"><a href="#控制节点" class="headerlink" title="控制节点"></a>控制节点</h3><h4 id="配置网络接口"><a href="#配置网络接口" class="headerlink" title="配置网络接口"></a>配置网络接口</h4><p>配置第一个接口<code>eth0</code>作为管理接口：</p>
+<ul>
+<li>IP地址：192.168.200.11</li>
+<li>网络掩码：255.255.255.0</li>
+<li>默认网关：192.168.200.254</li>
+</ul>
+<p>配置第二个接口<code>eth1</code>作为提供者网络：</p>
+<p>编辑<code>/etc/sysconfig/network-scripts/ifcfg-eth1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=INTERFACE_NAME</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">BOOTPROTO=&quot;none&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意不要更改 <code>HWADDR</code> 与 <code>UUID</code></p>
+</blockquote>
+<p>配置完成后查看网卡状态是否正常，例如：<code>ifconfig</code>、<code>ipadd</code>、<code>nmcli con show</code></p>
+<h4 id="配置主机名解析"><a href="#配置主机名解析" class="headerlink" title="配置主机名解析"></a>配置主机名解析</h4><ol>
+<li>将控制节点的主机名设置为<code>controller</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname controller</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>编辑<code>/etc/hosts</code>文件，添加以下主机解析内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># controller</span><br><span class="line">192.168.200.11       controller</span><br><span class="line"></span><br><span class="line"># compute1</span><br><span class="line">192.168.200.31       compute1</span><br><span class="line"></span><br><span class="line"># block1</span><br><span class="line">192.168.200.41       block1</span><br><span class="line"></span><br><span class="line"># object1</span><br><span class="line">192.168.200.51       object1</span><br><span class="line"></span><br><span class="line"># object2</span><br><span class="line">192.168.200.52       object2</span><br></pre></td></tr></table></figure>
+<h3 id="计算节点"><a href="#计算节点" class="headerlink" title="计算节点"></a>计算节点</h3><h4 id="配置网络接口-1"><a href="#配置网络接口-1" class="headerlink" title="配置网络接口"></a>配置网络接口</h4><p>配置第一个接口<code>eth0</code>作为管理接口：</p>
+<ul>
+<li>IP地址：192.168.200.31</li>
+<li>网络掩码：255.255.255.0</li>
+<li>默认网关：192.168.200.254</li>
+</ul>
+<p>配置第二个接口<code>eth1</code>作为提供者网络：</p>
+<p>编辑<code>/etc/sysconfig/network-scripts/ifcfg-eth1</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DEVICE=INTERFACE_NAME</span><br><span class="line">TYPE=Ethernet</span><br><span class="line">ONBOOT=&quot;yes&quot;</span><br><span class="line">BOOTPROTO=&quot;none&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意不要更改 <code>HWADDR</code> 与 <code>UUID</code></p>
+</blockquote>
+<blockquote>
+<p> 配置完成后查看网卡状态是否正常，例如：<code>ifconfig</code>、<code>ipadd</code>、<code>nmcli con show</code></p>
+</blockquote>
+<h4 id="配置主机名解析-1"><a href="#配置主机名解析-1" class="headerlink" title="配置主机名解析"></a>配置主机名解析</h4><ol>
+<li>将控制节点的主机名设置为<code>compute1</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname compute1</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>编辑<code>/etc/hosts</code>文件，添加以下主机解析内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># controller</span><br><span class="line">192.168.200.11       controller</span><br><span class="line"></span><br><span class="line"># compute1</span><br><span class="line">192.168.200.31       compute1</span><br><span class="line"></span><br><span class="line"># block1</span><br><span class="line">192.168.200.41       block1</span><br><span class="line"></span><br><span class="line"># object1</span><br><span class="line">192.168.200.51       object1</span><br><span class="line"></span><br><span class="line"># object2</span><br><span class="line">192.168.200.52       object2</span><br></pre></td></tr></table></figure>
+<h3 id="验证连通性"><a href="#验证连通性" class="headerlink" title="验证连通性"></a>验证连通性</h3><ol>
+<li><p>在控制节点上验证</p>
+<ul>
+<li><code>ping -c 4 www.baidu.com</code></li>
+<li><code>ping -c 4 compute1</code></li>
+</ul>
+</li>
+<li><p>在计算节点上验证</p>
+<ul>
+<li><p><code>ping -c 4 www.baidu.com</code></p>
+</li>
+<li><p><code>ping -c 4 controller</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>验证是否能正常通信。</p>
+</blockquote>
+<h2 id="配置NTP"><a href="#配置NTP" class="headerlink" title="配置NTP"></a>配置NTP</h2><h3 id="控制节点-1"><a href="#控制节点-1" class="headerlink" title="控制节点"></a>控制节点</h3><p>安装、配置 <code>chrony</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装chrony包</span><br><span class="line">yum install chrony</span><br><span class="line"><span class="meta">#</span> 编辑/etc/chrony.conf，配置合适的ntp服务器（不配置也可以，默认配置会有公共的ntp服务器）</span><br><span class="line">server NTP_SERVER iburst</span><br><span class="line"><span class="meta">#</span> 允许其他节点能够连接此ntp服务器</span><br><span class="line">ehco "allow 192.168.200.0/24" &gt;&gt; /etc/chrony.conf</span><br><span class="line"><span class="meta">#</span> 重启NTP</span><br><span class="line">systemctl enable chronyd.service</span><br><span class="line">systemctl start chronyd.service</span><br></pre></td></tr></table></figure>
+<h3 id="其他节点"><a href="#其他节点" class="headerlink" title="其他节点"></a>其他节点</h3><p>安装、配置 <code>chrony</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装chrony包</span><br><span class="line">yum install chrony</span><br><span class="line"><span class="meta">#</span> 编辑/etc/chrony.conf，配置ntp server为计算节点</span><br><span class="line">server controller iburst</span><br><span class="line"><span class="meta">#</span> 重启NTP</span><br><span class="line">systemctl enable chronyd.service</span><br><span class="line">systemctl start chronyd.service</span><br></pre></td></tr></table></figure>
+<h3 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h3><p>验证NTP同步、NTP服务器是否正确</p>
+<ol>
+<li><p>控制节点执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其他节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronyc sources</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="安装-OpenStack-软件包"><a href="#安装-OpenStack-软件包" class="headerlink" title="安装 OpenStack 软件包"></a>安装 OpenStack 软件包</h2><blockquote>
+<p>OpenStack包的设置需要在所有节点上完成：控制、计算和块存储节点。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装OpenStack存储库</span><br><span class="line">yum install centos-release-openstack-stein</span><br><span class="line"><span class="meta">#</span> 升级软件包</span><br><span class="line">yum upgrade</span><br><span class="line"><span class="meta">#</span> 安装OpenStack客户端</span><br><span class="line">yum install python-openstackclient</span><br><span class="line"><span class="meta">#</span> 由于CentOS默认启用SElinux，安装openstack-selinux以自动管理openstack服务的selinux安全策略</span><br><span class="line">yum install openstack-selinux</span><br></pre></td></tr></table></figure>
+<h2 id="配置-SQL-数据库"><a href="#配置-SQL-数据库" class="headerlink" title="配置 SQL 数据库"></a>配置 SQL 数据库</h2><blockquote>
+<p>数据库：Mariadb</p>
+<p>数据库通常在<strong>控制节点</strong>上运行</p>
+<p>注：此教程数据库安装在<strong>控制节点</strong>。</p>
+</blockquote>
+<h3 id="安装、配置组件"><a href="#安装、配置组件" class="headerlink" title="安装、配置组件"></a>安装、配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install mariadb mariadb-server python2-PyMySQL</span><br><span class="line"><span class="meta">#</span> 备份现有配置文件</span><br><span class="line">cp /etc/my.cnf.d/ /etc/my.cnf.d.backup/</span><br><span class="line"><span class="meta">#</span> 编辑配置文件</span><br><span class="line">vim /etc/my.cnf.d/openstack.cnf</span><br><span class="line"><span class="meta">#</span># 创建[mysqld]部分，并添加如下配置</span><br><span class="line"><span class="meta">#</span>## bind-address 为控制节点的管理IP地址（其他节点可通过此IP访问该数据库）</span><br><span class="line">[mysqld]</span><br><span class="line">bind-address = 192.168.200.11</span><br><span class="line">default-storage-engine = innodb</span><br><span class="line">innodb_file_per_table = on</span><br><span class="line">max_connections = 4096</span><br><span class="line">collation-server = utf8_general_ci</span><br><span class="line">character-set-server = utf8</span><br></pre></td></tr></table></figure>
+<h3 id="完成安装"><a href="#完成安装" class="headerlink" title="完成安装"></a>完成安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 启动数据库服务，并设置开机引导时自启。</span><br><span class="line">systemctl enable mariadb.service</span><br><span class="line">systemctl start mariadb.service</span><br><span class="line"><span class="meta">#</span> 初始化数据库（重要！设置数据库root用户密码）</span><br><span class="line">mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<h2 id="配置消息队列服务（RabbitMQ）"><a href="#配置消息队列服务（RabbitMQ）" class="headerlink" title="配置消息队列服务（RabbitMQ）"></a>配置消息队列服务（RabbitMQ）</h2><ul>
+<li>OpenStack 使用<strong>消息队列</strong>来协议各个服务之间的操作和状态信息。消息队列通常在控制节点上运行。OpenStack还支持多种消息队列服务，包括<a href="https://www.rabbitmq.com/" target="_blank" rel="noopener">RabbitMQ</a>， <a href="https://qpid.apache.org/" target="_blank" rel="noopener">Qpid</a>和<a href="http://zeromq.org/" target="_blank" rel="noopener">ZeroMQ</a><ul>
+<li>因为大多数发行版（OpenStack发行版？Linux发行版？）都支持RabbitMQ，所以本次也采用RabbitMQ实现消息队列服务</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在控制节点上安装RabbitMQ</p>
+</blockquote>
+<h3 id="安装和配置组件"><a href="#安装和配置组件" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install rabbitmq-server</span><br><span class="line"><span class="meta">#</span> 启动消息队列服务并将其配置为在系统引导时启动：</span><br><span class="line">systemctl enable rabbitmq-server.service</span><br><span class="line">systemctl start rabbitmq-server.service</span><br><span class="line"><span class="meta">#</span> 添加openstack用户(此处用户密码为openstack)</span><br><span class="line">rabbitmqctl add_user openstack openstack</span><br><span class="line"><span class="meta">#</span> 允许用户进行配置，写入和读取访问 openstack：</span><br><span class="line">rabbitmqctl set_permissions openstack ".*" ".*" ".*"</span><br><span class="line">Setting permissions for user "openstack" in vhost "/" ...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>记住此次配置的RabbitMQ 用户和密码，后面会部署OpenStack一些服务会用到。</p>
+</blockquote>
+<h2 id="配置-Memcached"><a href="#配置-Memcached" class="headerlink" title="配置 Memcached"></a>配置 Memcached</h2><p>服务的身份服务身份验证机制使用Memcached来缓存令牌。memcached服务通常在控制器节点上运行。</p>
+<blockquote>
+<p>在控制节点上部署Memcached服务。</p>
+</blockquote>
+<h3 id="安装和配置组件-1"><a href="#安装和配置组件-1" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包：</span><br><span class="line">yum install memcached python-memcached</span><br><span class="line"><span class="meta">#</span> 编辑/etc/sysconfig/memcached文件并完成以下操作：</span><br><span class="line"><span class="meta">#</span># 配置服务以使用控制器节点的管理IP地址。这是为了通过管理网络启用其他节点的访问：</span><br><span class="line">OPTIONS="-l 127.0.0.1,::1,controller"</span><br><span class="line"><span class="meta">#</span> 启动Memcached服务并将其配置为在系统引导时启动：</span><br><span class="line">systemctl enable memcached.service</span><br><span class="line">systemctl start memcached.service</span><br></pre></td></tr></table></figure>
+<h2 id="配置-Etcd"><a href="#配置-Etcd" class="headerlink" title="配置 Etcd"></a>配置 Etcd</h2><p>OpenStack服务可以使用Etcd，一种分布式的可靠的键值存储，用于密钥锁定、存储配置、跟踪服务生存和其他场景。</p>
+<blockquote>
+<p> 在控制节点上部署Etcd服务。</p>
+</blockquote>
+<h3 id="安装和配置组件-2"><a href="#安装和配置组件-2" class="headerlink" title="安装和配置组件"></a>安装和配置组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装包</span><br><span class="line">yum install etcd</span><br><span class="line"><span class="meta">#</span> 编辑/etc/etcd/etcd.conf</span><br><span class="line"><span class="meta">#</span># 设置ETCD_INITIAL_CLUSTER， ETCD_INITIAL_ADVERTISE_PEER_URLS，ETCD_ADVERTISE_CLIENT_URLS， ETCD_LISTEN_CLIENT_URLS</span><br><span class="line"><span class="meta">#</span>[Member]</span><br><span class="line">ETCD_DATA_DIR="/var/lib/etcd/default.etcd"</span><br><span class="line">ETCD_LISTEN_PEER_URLS="http://192.168.200.11:2380"</span><br><span class="line">ETCD_LISTEN_CLIENT_URLS="http://192.168.200.11:2379"</span><br><span class="line">ETCD_NAME="controller"</span><br><span class="line"><span class="meta">#</span>[Clustering]</span><br><span class="line">ETCD_INITIAL_ADVERTISE_PEER_URLS="http://192.168.200.11:2380"</span><br><span class="line">ETCD_ADVERTISE_CLIENT_URLS="http://192.168.200.11:2379"</span><br><span class="line">ETCD_INITIAL_CLUSTER="controller=http://192.168.200.11:2380"</span><br><span class="line">ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"</span><br><span class="line">ETCD_INITIAL_CLUSTER_STATE="new"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 启用并配置开机启动etcd服务</span><br><span class="line">systemctl enable etcd</span><br><span class="line">systemctl start etcd</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>至此基础环境已搭建完成，记得给虚拟机打个快照。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/27/Linux command skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/27/Linux command skills/" class="post-title-link" itemprop="url">Linux command 技巧汇总</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-27 12:07:40 / Modified: 14:53:06" itemprop="dateCreated datePublished" datetime="2019-05-27T12:07:40+08:00">2019-05-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/27/Linux command skills/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/27/Linux command skills/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">81</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>关闭SELINUX</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i  "s/^SELINUX=enforcing/SELINUX=disabled/g"  /etc/selinux/config</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/26/OpenStack services/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/26/OpenStack services/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-26 13:50:04 / Modified: 13:52:03" itemprop="dateCreated datePublished" datetime="2019-05-26T13:50:04+08:00">2019-05-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/26/OpenStack services/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/26/OpenStack services/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Symbols count in article: </span>
+                
+                <span title="Symbols count in article">871</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">1 mins.</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="OpenStack-services-概述"><a href="#OpenStack-services-概述" class="headerlink" title="OpenStack services 概述"></a>OpenStack services 概述</h1><h2 id="Dashboard-Horizon"><a href="#Dashboard-Horizon" class="headerlink" title="Dashboard:Horizon"></a><a href="http://www.openstack.org/software/releases/liberty/components/horizon" target="_blank" rel="noopener">Dashboard</a>:Horizon</h2><p><a href="http://docs.openstack.org/developer/horizon/" target="_blank" rel="noopener">Horizon</a> 提供了一个基于web的自服务门户，与OpenStack底层服务交互，诸如启动一个实例，分配IP地址以及配置访问控制。</p>
+<h2 id="Compute-Nova"><a href="#Compute-Nova" class="headerlink" title="Compute:Nova"></a><a href="http://www.openstack.org/software/releases/liberty/components/nova" target="_blank" rel="noopener">Compute</a>:Nova</h2><p><a href="http://docs.openstack.org/developer/nova/" target="_blank" rel="noopener">Nova</a> 在OpenStack环境中计算实例的生命周期管理。按需响应包括生成、调度、回收虚拟机等操作。</p>
+<h2 id="Networking-Neutron"><a href="#Networking-Neutron" class="headerlink" title="Networking:Neutron"></a><a href="http://www.openstack.org/software/releases/liberty/components/neutron" target="_blank" rel="noopener">Networking</a>:Neutron</h2><p><a href="http://docs.openstack.org/developer/neutron/" target="_blank" rel="noopener">Neutron</a> 确保为其它OpenStack服务提供网络连接即服务，比如OpenStack计算。为用户提供API定义网络和使用。基于插件的架构其支持众多的网络提供商和技术。</p>
+<h2 id="Object-Storage-Swift"><a href="#Object-Storage-Swift" class="headerlink" title="Object Storage:Swift"></a><a href="http://www.openstack.org/software/releases/liberty/components/swift" target="_blank" rel="noopener">Object Storage</a>:Swift</h2><p><a href="http://docs.openstack.org/developer/swift/" target="_blank" rel="noopener">Swift </a>通过一个 <a href="https://docs.openstack.org/mitaka/zh_CN/install-guide-rdo/common/glossary.html#term-restful" target="_blank" rel="noopener"><em>RESTful</em></a>,基于HTTP的应用程序接口存储和任意检索的非结构化数据对象。它拥有高容错机制，基于数据复制和可扩展架构。它的实现并像是一个文件服务器需要挂载目录。在此种方式下，它写入对象和文件到多个硬盘中，以确保数据是在集群内跨服务器的多份复制。</p>
+<h2 id="Block-Storage-Cinder"><a href="#Block-Storage-Cinder" class="headerlink" title="Block Storage:Cinder"></a><a href="http://www.openstack.org/software/releases/liberty/components/cinder" target="_blank" rel="noopener">Block Storage</a>:Cinder</h2><p><a href="http://docs.openstack.org/developer/cinder/" target="_blank" rel="noopener">Cinder</a> 为运行实例而提供的持久性块存储。它的可插拔驱动架构的功能有助于创建和管理块存储设备。</p>
+<h2 id="Identity-service-Keystone"><a href="#Identity-service-Keystone" class="headerlink" title="Identity service:Keystone"></a><a href="http://www.openstack.org/software/releases/liberty/components/keystone" target="_blank" rel="noopener">Identity service</a>:Keystone</h2><p><a href="http://docs.openstack.org/developer/keystone/" target="_blank" rel="noopener">Keystone</a>为其他OpenStack服务提供认证和授权服务，为所有的OpenStack服务提供一个端点目录。</p>
+<h2 id="Image-service-Glance"><a href="#Image-service-Glance" class="headerlink" title="Image service:Glance"></a><a href="http://www.openstack.org/software/releases/liberty/components/glance" target="_blank" rel="noopener">Image service</a>:Glance</h2><p><a href="http://docs.openstack.org/developer/glance/" target="_blank" rel="noopener">Glance</a>存储和检索虚拟机磁盘镜像，OpenStack计算会在实例部署时使用此服务。</p>
+<h2 id="Telemetry-Ceilometer"><a href="#Telemetry-Ceilometer" class="headerlink" title="Telemetry:Ceilometer"></a><a href="http://www.openstack.org/software/releases/liberty/components/ceilometer" target="_blank" rel="noopener">Telemetry</a>:Ceilometer</h2><p><a href="http://docs.openstack.org/developer/ceilometer/" target="_blank" rel="noopener">Ceilometer</a>为OpenStack云的计费、基准、扩展性以及统计等目的提供监测和计量。</p>
+<h2 id="Orchestration-Heat"><a href="#Orchestration-Heat" class="headerlink" title="Orchestration:Heat"></a><a href="http://www.openstack.org/software/releases/liberty/components/heat" target="_blank" rel="noopener">Orchestration</a>:Heat</h2><p><a href="http://docs.openstack.org/developer/heat/" target="_blank" rel="noopener">Heat</a>Orchestration服务支持多样化的综合的云应用，通过调用OpenStack-native REST API和CloudFormation-compatible Query API，支持:term:<a href="https://docs.openstack.org/mitaka/zh_CN/install-guide-rdo/overview.html#id1" target="_blank" rel="noopener">`</a>HOT <heat orchestration template (hot)>`格式模板或者AWS CloudFormation格式模板</heat></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/25/类UNIX OS CLI skills/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZiJian Fu">
+      <meta itemprop="description" content="Keep it simple.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZiJian's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/25/类UNIX OS CLI skills/" class="post-title-link" itemprop="url">Untitled</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-05-25 16:19:36" itemprop="dateCreated datePublished" datetime="2019-05-25T16:19:36+08:00">2019-05-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-05-26 13:51:41" itemprop="dateModified" datetime="2019-05-26T13:51:41+08:00">2019-05-26</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/05/25/类UNIX OS CLI skills/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/类UNIX OS CLI skills/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -589,7 +1525,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-25 17:59:36" itemprop="dateModified" datetime="2019-05-25T17:59:36+08:00">2019-05-25</time>
+                <time title="Modified: 2019-05-28 12:29:07" itemprop="dateModified" datetime="2019-05-28T12:29:07+08:00">2019-05-28</time>
               
             
           </span>
@@ -648,7 +1584,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">4.5k</span>
+                <span title="Symbols count in article">4.8k</span>
               
 
               
@@ -701,7 +1637,15 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.config/oxidized/route.db</span><br><span class="line"><span class="meta">#</span> name:ip:model:username:password:group:enable</span><br><span class="line">host1:192.168.0.1:comware:admin:admin::</span><br></pre></td></tr></table></figure>
 <h3 id="model-comware"><a href="#model-comware" class="headerlink" title="model:comware"></a>model:comware</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comware</span> &lt; Oxidized::Model</span></span><br><span class="line">  <span class="comment"># HP (A-series)/H3C/3Com Comware</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># sometimes the prompt might have a leading nul or trailing ASCII Bell (^G)</span></span><br><span class="line">  prompt /^\<span class="number">0</span>*(&lt;[\w.-]+&gt;).?$/</span><br><span class="line">  comment <span class="string">'# '</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># example how to handle pager</span></span><br><span class="line">  <span class="comment"># expect /^\s*---- More ----$/ do |data, re|</span></span><br><span class="line">  <span class="comment">#  send ' '</span></span><br><span class="line">  <span class="comment">#  data.sub re, ''</span></span><br><span class="line">  <span class="comment"># end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:all</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    <span class="comment"># cfg.gsub! /^.*\e\[42D/, ''        # example how to handle pager</span></span><br><span class="line">    <span class="comment"># skip rogue ^M</span></span><br><span class="line">    cfg = cfg.delete <span class="string">"\r"</span></span><br><span class="line">    cfg.cut_both</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:secret</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( snmp-agent community).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( password hash).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span> <span class="keyword">do</span></span><br><span class="line">    username /^<span class="symbol">Username:</span>$/</span><br><span class="line">    password /^<span class="symbol">Password:</span>$/</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span>, <span class="symbol">:ssh</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># enable command-line mode on SMB comware switches (HP V1910, V1920)</span></span><br><span class="line">    <span class="comment"># autodetection is hard, because the 'summary' command is paged, and</span></span><br><span class="line">    <span class="comment"># the pager cannot be disabled before _cmdline-mode on.</span></span><br><span class="line">    <span class="keyword">if</span> vars <span class="symbol">:comware_cmdline</span></span><br><span class="line">      post_login <span class="keyword">do</span></span><br><span class="line">        send <span class="string">"_cmdline-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">        send <span class="string">"xtd-cli-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    post_login <span class="string">'screen-length disable'</span></span><br><span class="line">    post_login <span class="string">'undo terminal monitor'</span></span><br><span class="line">    pre_logout <span class="string">'quit'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display version'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg = cfg.each_line.reject &#123; <span class="params">|l|</span> l.match /uptime/i &#125;.join</span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display device'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display current-configuration'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h2 id="启动oxidized容器"><a href="#启动oxidized容器" class="headerlink" title="启动oxidized容器"></a>启动oxidized容器</h2><h3 id="使用-docker-compose-启动-oxidized容器"><a href="#使用-docker-compose-启动-oxidized容器" class="headerlink" title="使用 docker-compose 启动 oxidized容器"></a>使用 docker-compose 启动 oxidized容器</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">oxidized:</span></span><br><span class="line"><span class="attr">  restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">oxidized/oxidized:latest</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">8888</span><span class="string">:8888/tcp</span></span><br><span class="line"><span class="attr">  environment:</span></span><br><span class="line"><span class="attr">    CONFIG_RELOAD_INTERVAL:</span> <span class="number">600</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/localtime:/etc/localtime:ro</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/oxidized:/root/.config/oxidized</span></span><br></pre></td></tr></table></figure>
-<h1 id="部署过程中遇到的一些问题"><a href="#部署过程中遇到的一些问题" class="headerlink" title="部署过程中遇到的一些问题"></a>部署过程中遇到的一些问题</h1><h2 id="comware-平台"><a href="#comware-平台" class="headerlink" title="comware 平台"></a>comware 平台</h2><h3 id="没有找到匹配字符，无法连接到目标主机。"><a href="#没有找到匹配字符，无法连接到目标主机。" class="headerlink" title="没有找到匹配字符，无法连接到目标主机。"></a>没有找到匹配字符，无法连接到目标主机。</h3><p>查看 log 错误提示如下：</p>
+<h1 id="部署过程中遇到的一些问题"><a href="#部署过程中遇到的一些问题" class="headerlink" title="部署过程中遇到的一些问题"></a>部署过程中遇到的一些问题</h1><h2 id="oxidized-web页面配置备份显示时间与主机时间不符"><a href="#oxidized-web页面配置备份显示时间与主机时间不符" class="headerlink" title="oxidized web页面配置备份显示时间与主机时间不符"></a>oxidized web页面配置备份显示时间与主机时间不符</h2><ol>
+<li><p>编辑配置文件<code>oxidized.js</code></p>
+</li>
+<li><p>注释一行，并删除下一行行尾的配置：</p>
+</li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var timeZone = date.toString().match(/\(.*\)/)[0].match(/[A-Z]/g).join('');</span></span><br><span class="line">    $(<span class="keyword">this</span>).text(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day + <span class="string">' '</span> + hour + <span class="string">':'</span> + minute + <span class="string">':'</span> + second + <span class="string">' '</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="comware-平台"><a href="#comware-平台" class="headerlink" title="comware 平台"></a>comware 平台</h2><h3 id="没有找到匹配字符，无法连接到目标主机。"><a href="#没有找到匹配字符，无法连接到目标主机。" class="headerlink" title="没有找到匹配字符，无法连接到目标主机。"></a>没有找到匹配字符，无法连接到目标主机。</h3><p>查看 log 错误提示如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f dockername</span><br><span class="line">x.x.x.x raised Oxidized::PromptUndetect with msg &quot;unable to detect prompt: (?-mix:^\0*(&lt;[\w:.-]+&gt;).?$)&quot;</span><br><span class="line">xxx status no_connection, retry attempt 1</span><br></pre></td></tr></table></figure>
 <p>错误原因：</p>
 <ul>
@@ -1281,372 +2225,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker Dockerfile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZiJian Fu">
-      <meta itemprop="description" content="Keep it simple.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZiJian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/21/Docker Dockerfile/" class="post-title-link" itemprop="url">Untitled</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-21 17:15:16 / Modified: 17:15:53" itemprop="dateCreated datePublished" datetime="2019-05-21T17:15:16+08:00">2019-05-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/21/Docker Dockerfile/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/Docker Dockerfile/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">0</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/21/Docker Registries/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZiJian Fu">
-      <meta itemprop="description" content="Keep it simple.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZiJian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/21/Docker Registries/" class="post-title-link" itemprop="url">Untitled</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-21 17:13:48 / Modified: 17:16:07" itemprop="dateCreated datePublished" datetime="2019-05-21T17:13:48+08:00">2019-05-21</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/21/Docker Registries/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/21/Docker Registries/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">0</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/16/MPLS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2139,280 +2717,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://fuzijian.github.io/2019/05/15/PPTP Server/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="ZiJian Fu">
-      <meta itemprop="description" content="Keep it simple.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZiJian's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/15/PPTP Server/" class="post-title-link" itemprop="url">搭建PPTP-Server</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-05-15 00:10:41" itemprop="dateCreated datePublished" datetime="2019-05-15T00:10:41+08:00">2019-05-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-05-21 16:41:59" itemprop="dateModified" datetime="2019-05-21T16:41:59+08:00">2019-05-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/PPTP/" itemprop="url" rel="index"><span itemprop="name">PPTP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/05/15/PPTP Server/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/15/PPTP Server/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-symbolscount">
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Symbols count in article: </span>
-                
-                <span title="Symbols count in article">1.6k</span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">1 mins.</span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>本教程仅适用于CentOS 7</p>
-</blockquote>
-<h1 id="检查是否支持PPP"><a href="#检查是否支持PPP" class="headerlink" title="检查是否支持PPP"></a>检查是否支持PPP</h1><p>若使用XEN架构的VPS，则如下步骤不用执行<br>检查PPP是否开启：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/ppp</span><br></pre></td></tr></table></figure></p>
-<p>开启成功的标志：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat: /dev/ppp: No such file or directory </span><br><span class="line">或者 </span><br><span class="line">cat: /dev/ppp: No such device or address</span><br></pre></td></tr></table></figure></p>
-<h1 id="安装相关组件"><a href="#安装相关组件" class="headerlink" title="安装相关组件"></a>安装相关组件</h1><p><a href="http://www.wanghailin.cn/scka/centos7-yum-pero/" target="_blank" rel="noopener">http://www.wanghailin.cn/scka/centos7-yum-pero/</a><br>运行如下命令安装<code>iptables</code>、<code>ppp</code>、<code>pptpd</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ppp iptables pptpd</span><br></pre></td></tr></table></figure></p>
-<h2 id="配置组件"><a href="#配置组件" class="headerlink" title="配置组件"></a>配置组件</h2><h3 id="配置pptpd-conf"><a href="#配置pptpd-conf" class="headerlink" title="配置pptpd.conf"></a>配置pptpd.conf</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
-<p>搜索localip，去除如下字段的注释，然后保存退出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">localip 192.168.0.1</span><br><span class="line">remoteip 192.168.0.234-238,192.168.0.245</span><br></pre></td></tr></table></figure></p>
-<h3 id="配置options-pptpd"><a href="#配置options-pptpd" class="headerlink" title="配置options.pptpd"></a>配置options.pptpd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ppp/options.pptpd</span><br></pre></td></tr></table></figure>
-<p>搜索ms-dns，去掉搜索到的两行ms-dns前面的#，并修改为下面的字段<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ms-dns 8.8.8.8</span><br><span class="line">ms-dns 8.8.4.4</span><br></pre></td></tr></table></figure></p>
-<h3 id="配置-etc-ppp-chap-secrets（设置VPN账号密码）"><a href="#配置-etc-ppp-chap-secrets（设置VPN账号密码）" class="headerlink" title="配置/etc/ppp/chap-secrets（设置VPN账号密码）"></a>配置/etc/ppp/chap-secrets（设置VPN账号密码）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ppp/chap-secrets</span><br></pre></td></tr></table></figure>
-<p>添加一行，按如下格式写入用户名和密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户名 pptpd 密码 *</span><br></pre></td></tr></table></figure></p>
-<h1 id="内核参数修改"><a href="#内核参数修改" class="headerlink" title="内核参数修改"></a>内核参数修改</h1><p>修改内核参数，开启IP转发功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p>
-<p>增加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure></p>
-<p>生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -p</span><br></pre></td></tr></table></figure></p>
-<h1 id="添加iptables转发规则"><a href="#添加iptables转发规则" class="headerlink" title="添加iptables转发规则"></a>添加iptables转发规则</h1><p>XEN架构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -o eth0 -j MASQUERADE</span><br></pre></td></tr></table></figure></p>
-<p>OpenVZ架构<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j SNAT --to-source `VPS公网IP`</span><br></pre></td></tr></table></figure></p>
-<p><em>添加转发规则后重启就会失效，Centos 6系统可以使用service iptables save保存配置，但Centos 7不支持，需要将配置写入rc.local文件中，开机自动设置</em></p>
-<h1 id="启动组件"><a href="#启动组件" class="headerlink" title="启动组件"></a>启动组件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/pptpd start</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig pptpd on</span><br></pre></td></tr></table></figure>
-<h1 id="错误排查"><a href="#错误排查" class="headerlink" title="错误排查"></a>错误排查</h1><h2 id="619错误"><a href="#619错误" class="headerlink" title="619错误"></a>619错误</h2><ol>
-<li>检查配置是否全部正确</li>
-<li><p>运行如下命令尝试修复</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm /dev/ppp</span><br><span class="line">mknod /dev/ppp c 108 0</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>若还是不行，运行下面的命令编辑pptpd.conf，并找到logwtmp，前面加#注释掉，再重启服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>请检查你的路由器是否支持PPTP穿透，请尝试连接公用VPN测试，或更换路由器测试，或直接连接宽带测试，若确实是路由器不支持PPTP穿透，可以尝试搭建L2TP VPN</p>
-</li>
-<li>检查用户名密码是否有误</li>
-<li>请向服务提供商询问是否支持搭建VPN<h2 id="800错误"><a href="#800错误" class="headerlink" title="800错误"></a>800错误</h2></li>
-<li>请检查服务器上的PPTPD是否正常启动，运行下面的命令检查pptp端口和进程</li>
-</ol>
-<p>进程：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef |grep pptpd</span><br></pre></td></tr></table></figure></p>
-<p>端口：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nutap | grep pptpd</span><br></pre></td></tr></table></figure></p>
-<ol start="2">
-<li>请检查计算机能不能正常连接到服务器，可以尝试ping服务器</li>
-<li>请检查iptables是否拦截了PPTPD端口，可以尝试用下面的命令打开端口<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -p tcp --dport 1723 -j ACCEPT</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>若发现有效，记得将它加入rc.local文件中</p>
-<ol start="4">
-<li>检查上面的配置是否都执行完毕<h2 id="651错误"><a href="#651错误" class="headerlink" title="651错误"></a>651错误</h2></li>
-<li><p>运行下面的命令编辑pptpd.conf，并找到logwtmp，前面加#注释掉，再重启服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/pptpd.conf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>检查用户名和密码是否正确</p>
-</li>
-<li>检查上面的配置是否都执行完毕<br>若上面的错误排除都无法排除您的错误，可能是服务商限制VPN，请向服务商询问！</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2454,7 +2765,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2489,7 +2800,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2520,7 +2833,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2611,7 +2928,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">13k</span>
+    <span title="Symbols count total">19k</span>
   
 
   
@@ -2620,7 +2937,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">12 mins.</span>
+    <span title="Reading time total">17 mins.</span>
   
 </div>
 

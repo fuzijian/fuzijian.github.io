@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="ZiJian&#39;s Blog">
 <meta property="og:description" content="概述Oxidized 是一个网络设备配置自动化备份工具。 优点：轻便、可扩展，并且支持多种操作系统（目前支持115种）。 Github：oxidized 使用docker部署oxidized如何获取 docker 镜像手动构建docker镜像12git clone https://github.com/ytti/oxidizeddocker build -q -t oxidized/oxidize">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-25T09:59:36.057Z">
+<meta property="og:updated_time" content="2019-05-28T04:29:07.041Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Oxidized 实现网络设备配置自动化备份">
 <meta name="twitter:description" content="概述Oxidized 是一个网络设备配置自动化备份工具。 优点：轻便、可扩展，并且支持多种操作系统（目前支持115种）。 Github：oxidized 使用docker部署oxidized如何获取 docker 镜像手动构建docker镜像12git clone https://github.com/ytti/oxidizeddocker build -q -t oxidized/oxidize">
@@ -404,7 +404,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-25 17:59:36" itemprop="dateModified" datetime="2019-05-25T17:59:36+08:00">2019-05-25</time>
+                <time title="Modified: 2019-05-28 12:29:07" itemprop="dateModified" datetime="2019-05-28T12:29:07+08:00">2019-05-28</time>
               
             
           </span>
@@ -463,7 +463,7 @@
                 
                   <span class="post-meta-item-text">Symbols count in article: </span>
                 
-                <span title="Symbols count in article">4.5k</span>
+                <span title="Symbols count in article">4.8k</span>
               
 
               
@@ -514,7 +514,15 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.config/oxidized/route.db</span><br><span class="line"><span class="meta">#</span> name:ip:model:username:password:group:enable</span><br><span class="line">host1:192.168.0.1:comware:admin:admin::</span><br></pre></td></tr></table></figure>
 <h3 id="model-comware"><a href="#model-comware" class="headerlink" title="model:comware"></a>model:comware</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comware</span> &lt; Oxidized::Model</span></span><br><span class="line">  <span class="comment"># HP (A-series)/H3C/3Com Comware</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># sometimes the prompt might have a leading nul or trailing ASCII Bell (^G)</span></span><br><span class="line">  prompt /^\<span class="number">0</span>*(&lt;[\w.-]+&gt;).?$/</span><br><span class="line">  comment <span class="string">'# '</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># example how to handle pager</span></span><br><span class="line">  <span class="comment"># expect /^\s*---- More ----$/ do |data, re|</span></span><br><span class="line">  <span class="comment">#  send ' '</span></span><br><span class="line">  <span class="comment">#  data.sub re, ''</span></span><br><span class="line">  <span class="comment"># end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:all</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    <span class="comment"># cfg.gsub! /^.*\e\[42D/, ''        # example how to handle pager</span></span><br><span class="line">    <span class="comment"># skip rogue ^M</span></span><br><span class="line">    cfg = cfg.delete <span class="string">"\r"</span></span><br><span class="line">    cfg.cut_both</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="symbol">:secret</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( snmp-agent community).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg.gsub! <span class="regexp">/^( password hash).*/</span>, <span class="string">'\\1 &lt;configuration removed&gt;'</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span> <span class="keyword">do</span></span><br><span class="line">    username /^<span class="symbol">Username:</span>$/</span><br><span class="line">    password /^<span class="symbol">Password:</span>$/</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cfg <span class="symbol">:telnet</span>, <span class="symbol">:ssh</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># enable command-line mode on SMB comware switches (HP V1910, V1920)</span></span><br><span class="line">    <span class="comment"># autodetection is hard, because the 'summary' command is paged, and</span></span><br><span class="line">    <span class="comment"># the pager cannot be disabled before _cmdline-mode on.</span></span><br><span class="line">    <span class="keyword">if</span> vars <span class="symbol">:comware_cmdline</span></span><br><span class="line">      post_login <span class="keyword">do</span></span><br><span class="line">        send <span class="string">"_cmdline-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">        send <span class="string">"xtd-cli-mode on\n"</span></span><br><span class="line">        send <span class="string">"y\n"</span></span><br><span class="line">        send vars(<span class="symbol">:comware_cmdline</span>) + <span class="string">"\n"</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    post_login <span class="string">'screen-length disable'</span></span><br><span class="line">    post_login <span class="string">'undo terminal monitor'</span></span><br><span class="line">    pre_logout <span class="string">'quit'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display version'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg = cfg.each_line.reject &#123; <span class="params">|l|</span> l.match /uptime/i &#125;.join</span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display device'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    comment cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  cmd <span class="string">'display current-configuration'</span> <span class="keyword">do</span> <span class="params">|cfg|</span></span><br><span class="line">    cfg</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h2 id="启动oxidized容器"><a href="#启动oxidized容器" class="headerlink" title="启动oxidized容器"></a>启动oxidized容器</h2><h3 id="使用-docker-compose-启动-oxidized容器"><a href="#使用-docker-compose-启动-oxidized容器" class="headerlink" title="使用 docker-compose 启动 oxidized容器"></a>使用 docker-compose 启动 oxidized容器</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">oxidized:</span></span><br><span class="line"><span class="attr">  restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">oxidized/oxidized:latest</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">8888</span><span class="string">:8888/tcp</span></span><br><span class="line"><span class="attr">  environment:</span></span><br><span class="line"><span class="attr">    CONFIG_RELOAD_INTERVAL:</span> <span class="number">600</span></span><br><span class="line"><span class="attr">  volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/localtime:/etc/localtime:ro</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/etc/oxidized:/root/.config/oxidized</span></span><br></pre></td></tr></table></figure>
-<h1 id="部署过程中遇到的一些问题"><a href="#部署过程中遇到的一些问题" class="headerlink" title="部署过程中遇到的一些问题"></a>部署过程中遇到的一些问题</h1><h2 id="comware-平台"><a href="#comware-平台" class="headerlink" title="comware 平台"></a>comware 平台</h2><h3 id="没有找到匹配字符，无法连接到目标主机。"><a href="#没有找到匹配字符，无法连接到目标主机。" class="headerlink" title="没有找到匹配字符，无法连接到目标主机。"></a>没有找到匹配字符，无法连接到目标主机。</h3><p>查看 log 错误提示如下：</p>
+<h1 id="部署过程中遇到的一些问题"><a href="#部署过程中遇到的一些问题" class="headerlink" title="部署过程中遇到的一些问题"></a>部署过程中遇到的一些问题</h1><h2 id="oxidized-web页面配置备份显示时间与主机时间不符"><a href="#oxidized-web页面配置备份显示时间与主机时间不符" class="headerlink" title="oxidized web页面配置备份显示时间与主机时间不符"></a>oxidized web页面配置备份显示时间与主机时间不符</h2><ol>
+<li><p>编辑配置文件<code>oxidized.js</code></p>
+</li>
+<li><p>注释一行，并删除下一行行尾的配置：</p>
+</li>
+<li><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var timeZone = date.toString().match(/\(.*\)/)[0].match(/[A-Z]/g).join('');</span></span><br><span class="line">    $(<span class="keyword">this</span>).text(year + <span class="string">'-'</span> + month + <span class="string">'-'</span> + day + <span class="string">' '</span> + hour + <span class="string">':'</span> + minute + <span class="string">':'</span> + second + <span class="string">' '</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="comware-平台"><a href="#comware-平台" class="headerlink" title="comware 平台"></a>comware 平台</h2><h3 id="没有找到匹配字符，无法连接到目标主机。"><a href="#没有找到匹配字符，无法连接到目标主机。" class="headerlink" title="没有找到匹配字符，无法连接到目标主机。"></a>没有找到匹配字符，无法连接到目标主机。</h3><p>查看 log 错误提示如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker logs -f dockername</span><br><span class="line">x.x.x.x raised Oxidized::PromptUndetect with msg &quot;unable to detect prompt: (?-mix:^\0*(&lt;[\w:.-]+&gt;).?$)&quot;</span><br><span class="line">xxx status no_connection, retry attempt 1</span><br></pre></td></tr></table></figure>
 <p>错误原因：</p>
 <ul>
@@ -591,7 +599,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/类UNIX系统命令技巧/" rel="prev" title>
+              <a href="/2019/05/25/类UNIX OS CLI skills/" rel="prev" title>
                  <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -668,7 +676,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -703,7 +711,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -734,7 +744,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -809,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用docker部署oxidized"><span class="nav-number">2.</span> <span class="nav-text">使用docker部署oxidized</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何获取-docker-镜像"><span class="nav-number">2.1.</span> <span class="nav-text">如何获取 docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手动构建docker镜像"><span class="nav-number">2.1.1.</span> <span class="nav-text">手动构建docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用取docker-hub上的docker镜像"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用取docker hub上的docker镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化oxidized配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">初始化oxidized配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要配置文件：config"><span class="nav-number">2.2.1.</span> <span class="nav-text">主要配置文件：config</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#source-csv"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">source:csv</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model-comware"><span class="nav-number">2.2.2.</span> <span class="nav-text">model:comware</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动oxidized容器"><span class="nav-number">2.3.</span> <span class="nav-text">启动oxidized容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-docker-compose-启动-oxidized容器"><span class="nav-number">2.3.1.</span> <span class="nav-text">使用 docker-compose 启动 oxidized容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署过程中遇到的一些问题"><span class="nav-number">3.</span> <span class="nav-text">部署过程中遇到的一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#comware-平台"><span class="nav-number">3.1.</span> <span class="nav-text">comware 平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有找到匹配字符，无法连接到目标主机。"><span class="nav-number">3.1.1.</span> <span class="nav-text">没有找到匹配字符，无法连接到目标主机。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登陆使用telnel协议的设备失败，使用ssh协议的设备正常。"><span class="nav-number">3.1.2.</span> <span class="nav-text">登陆使用telnel协议的设备失败，使用ssh协议的设备正常。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用docker部署oxidized"><span class="nav-number">2.</span> <span class="nav-text">使用docker部署oxidized</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何获取-docker-镜像"><span class="nav-number">2.1.</span> <span class="nav-text">如何获取 docker 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手动构建docker镜像"><span class="nav-number">2.1.1.</span> <span class="nav-text">手动构建docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用取docker-hub上的docker镜像"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用取docker hub上的docker镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化oxidized配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">初始化oxidized配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要配置文件：config"><span class="nav-number">2.2.1.</span> <span class="nav-text">主要配置文件：config</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#source-csv"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">source:csv</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#model-comware"><span class="nav-number">2.2.2.</span> <span class="nav-text">model:comware</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动oxidized容器"><span class="nav-number">2.3.</span> <span class="nav-text">启动oxidized容器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-docker-compose-启动-oxidized容器"><span class="nav-number">2.3.1.</span> <span class="nav-text">使用 docker-compose 启动 oxidized容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署过程中遇到的一些问题"><span class="nav-number">3.</span> <span class="nav-text">部署过程中遇到的一些问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#oxidized-web页面配置备份显示时间与主机时间不符"><span class="nav-number">3.1.</span> <span class="nav-text">oxidized web页面配置备份显示时间与主机时间不符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#comware-平台"><span class="nav-number">3.2.</span> <span class="nav-text">comware 平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有找到匹配字符，无法连接到目标主机。"><span class="nav-number">3.2.1.</span> <span class="nav-text">没有找到匹配字符，无法连接到目标主机。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登陆使用telnel协议的设备失败，使用ssh协议的设备正常。"><span class="nav-number">3.2.2.</span> <span class="nav-text">登陆使用telnel协议的设备失败，使用ssh协议的设备正常。</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -842,7 +856,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">13k</span>
+    <span title="Symbols count total">19k</span>
   
 
   
@@ -851,7 +865,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">12 mins.</span>
+    <span title="Reading time total">17 mins.</span>
   
 </div>
 
